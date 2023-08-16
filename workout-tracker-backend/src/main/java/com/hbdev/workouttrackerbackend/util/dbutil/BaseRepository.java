@@ -8,6 +8,8 @@ import java.util.UUID;
 @NoRepositoryBean
 public interface BaseRepository<Entity extends BaseEntity>  extends JpaRepository<Entity, Long> {
     Optional<Entity> findByUuid(UUID uuid);
+
+
 }
 
 
