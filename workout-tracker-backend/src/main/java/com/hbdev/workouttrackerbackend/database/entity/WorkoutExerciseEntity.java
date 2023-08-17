@@ -10,13 +10,23 @@ import java.util.List;
 @Entity
 @Data
 public class WorkoutExerciseEntity extends BaseEntity {
-    @OneToMany(mappedBy = "workoutExerciseEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    List<SetEntity> setEntities;
-    String notes;
-    int order;
-    int restTime;
+
+    private String notes;
+    private int setOrder;
+    private int restTime;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id")
-    ExerciseEntity exerciseEntity;
+    private ExerciseEntity exerciseEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "workout_template_id")
+    private WorkoutTemplateEntity workoutTemplateEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "workout_entity_id")
+    private WorkoutEntity workoutEntity;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workoutExerciseEntity")
+    private List<SetEntity> setEntities;
 
 }

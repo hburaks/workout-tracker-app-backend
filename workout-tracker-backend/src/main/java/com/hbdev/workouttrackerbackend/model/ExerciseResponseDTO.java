@@ -8,12 +8,12 @@ import lombok.Data;
 import java.util.List;
 
 public class ExerciseResponseDTO extends BaseEntity {
-    String name;
-    String description;
-    String videoUrl;
-    String imageUrl;
-    BodyPartTypeEnum bodyPartType;
-    List<WorkoutExerciseResponseDTO> workoutExerciseResponseDTOList;
-    WorkoutExerciseResponseDTO maxVolumeWorkoutExerciseResponseDTO;
-    SetResponseDTO maxWeightSetResponseDTO;
+    private String name;
+    private String description;
+    private String videoUrl;
+    private String imageUrl;
+    private BodyPartTypeEnum bodyPartType;
+    private List<WorkoutExerciseResponseDTO> workoutExerciseResponseDTOList;
+    private WorkoutExerciseResponseDTO maxVolumeWorkoutExerciseResponseDTO;
+    private SetResponseDTO maxWeightSetResponseDTO;
 }
