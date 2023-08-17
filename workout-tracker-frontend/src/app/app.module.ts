@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {RouterOutlet} from "@angular/router";
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import {LoginService} from "./service/login.service";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { LoginComponent } from './login/login.component';
         BrowserModule,
         RouterOutlet
     ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
