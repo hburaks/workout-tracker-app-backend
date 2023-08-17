@@ -1,13 +1,15 @@
 package com.hbdev.workouttrackerbackend.model.requestDTO;
 
+import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
+import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 
 import java.util.List;
 
 public class ProfileRequestDTO extends BaseEntity {
-    String firstName;
-    String lastName;
-    List<WorkoutRequestDTO> workoutRequestDTOList;
-    List<WorkoutTemplateRequestDTO> workoutTemplateRequestDTOList;
+    private String firstName;
+    private String lastName;
+    private List<WorkoutEntity> workoutEntityList;
+    private List<WorkoutTemplateEntity> workoutTemplateEntityList;
 
 }

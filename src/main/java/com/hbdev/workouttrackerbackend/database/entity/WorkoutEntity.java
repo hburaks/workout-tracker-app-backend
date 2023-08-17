@@ -10,14 +10,17 @@ import java.util.List;
 @Entity
 @Data
 public class WorkoutEntity extends BaseEntity {
-    String name;
-    String imageUrl;
-    String videoUrl;
-    String notes;
-    @Column
-    int duration;
-    @OneToMany(mappedBy = "workoutEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<WorkoutExerciseEntity> workoutExerciseList;
-    double totalWeight;
+    private String name;
+    private String imageUrl;
+    private String videoUrl;
+    private String notes;
+    private int duration;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<WorkoutExerciseEntity> workoutExerciseList;
+    private double totalWeight;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private ProfileEntity profileEntity;
 
 }

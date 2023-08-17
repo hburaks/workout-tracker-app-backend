@@ -3,6 +3,8 @@ package com.hbdev.workouttrackerbackend.util.dbutil;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,18 +15,17 @@ import java.util.Date;
 import java.util.UUID;
 
 
-@MappedSuperclass
+
 @Data
+@MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
 public class BaseEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid4")
+    @GenericGenerator(name = "uuid4", strategy = "uuid4")
     @JdbcTypeCode(java.sql.Types.VARCHAR)
     private UUID uuid;
 
@@ -32,13 +33,10 @@ public class BaseEntity {
     private Date creationDate;
 
     @LastModifiedDate
-    private Date updatedDate;
+    private Date lastModifiedDate;
 
-
-    @PrePersist
-    protected void onCreate() {
-        setUuid(UUID.randomUUID());
+    @PrePersist // database e kaydedilmeden çalışan metod
+    private void prePersist() {
+        this.uuid =UUID.randomUUID();
     }
-
-
 }

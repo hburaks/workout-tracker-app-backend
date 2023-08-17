@@ -1,14 +1,16 @@
 package com.hbdev.workouttrackerbackend.model;
 
+import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 public class SetResponseDTO extends BaseEntity {
 
-    double weight;
-    int reps;
-    int order;
+    private double weight;
+    private int reps;
+    private int setOrder;
+
+
+    WorkoutExerciseEntity workoutExerciseEntity;
 }
