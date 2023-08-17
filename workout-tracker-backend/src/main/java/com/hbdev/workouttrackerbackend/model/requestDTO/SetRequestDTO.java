@@ -1,13 +1,14 @@
 package com.hbdev.workouttrackerbackend.model.requestDTO;
 
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
+import com.hbdev.workouttrackerbackend.util.BaseDTO;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-public class SetRequestDTO extends BaseEntity {
+public class SetRequestDTO extends BaseDTO {
 
     private double weight;
     private int reps;

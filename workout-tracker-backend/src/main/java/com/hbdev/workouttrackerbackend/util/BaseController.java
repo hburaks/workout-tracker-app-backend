@@ -13,7 +13,7 @@ public abstract class BaseController<
 		DTO extends BaseDTO,
 		Entity extends BaseEntity,
 		RequestDTO extends BaseDTO,
-		Mapper extends BaseMapper<DTO, Entity, RequestDTO>,
+		Mapper extends GenericMapper<Entity, DTO, RequestDTO>,
 		Repository extends BaseRepository<Entity>,
 		Service extends BaseService<DTO, Entity, RequestDTO, Mapper, Repository>
 		> {
