@@ -2,13 +2,14 @@ package com.hbdev.workouttrackerbackend.model;
 
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
+import com.hbdev.workouttrackerbackend.util.BaseDTO;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
 
-public class WorkoutResponseDTO extends BaseEntity {
+public class WorkoutResponseDTO extends BaseDTO {
     private String name;
     private String imageUrl;
     private String videoUrl;

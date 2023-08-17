@@ -11,7 +11,7 @@ public abstract class BaseService<
         DTO extends BaseDTO,
         Entity extends BaseEntity,
         RequestDTO extends BaseDTO,
-        Mapper extends BaseMapper<DTO, Entity, RequestDTO>,
+        Mapper extends GenericMapper<Entity, DTO, RequestDTO>,
         Repository extends BaseRepository<Entity>> {
 
     protected abstract Mapper getBaseMapper();
@@ -20,14 +20,14 @@ public abstract class BaseService<
     protected abstract Repository getBaseRepository();
 
     public DTO save(RequestDTO requestDTO) {
-        Entity entity = getBaseMapper().requestDTOToEntity(requestDTO);
+        Entity entity = getBaseMapper().dtoToEntity(requestDTO);
         getBaseRepository().save(entity);
-        return getBaseMapper().entityToDTO(entity);
+        return getBaseMapper().entityToDto(entity);
     }
 
     public List<DTO> getAll() {
         List<Entity> entityList = getBaseRepository().findAll();
-        return getBaseMapper().entityListToDTOList(entityList);
+        return getBaseMapper().entityListToDtoList(entityList);
     }
 
     public DTO update(UUID uuid, RequestDTO requestDTO) {
@@ -35,7 +35,7 @@ public abstract class BaseService<
         if (entity == null) {
             return null;
         }
-        return getBaseMapper().entityToDTO(getBaseRepository().save(getBaseMapper().requestDtoToExistEntity(requestDTO, entity)));
+        return getBaseMapper().entityToDto(getBaseRepository().save(getBaseMapper().updateEntityFromDto(requestDTO, entity)));
     }
 
 
@@ -52,7 +52,7 @@ public abstract class BaseService<
     public DTO getByUuid(UUID uuid) {
         Entity entity = getBaseRepository().findByUuid(uuid).orElse(null);
         if (entity != null) {
-            return getBaseMapper().entityToDTO(entity);
+            return getBaseMapper().entityToDto(entity);
         } else {
             return null;
         }
