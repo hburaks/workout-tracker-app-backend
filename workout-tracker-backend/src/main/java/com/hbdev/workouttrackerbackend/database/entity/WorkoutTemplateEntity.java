@@ -11,6 +11,6 @@ import java.util.List;
 public class WorkoutTemplateEntity extends BaseEntity {
     @Column
     String name;
-    @OneToMany(mappedBy = "workoutTemplateEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "workoutTemplateEntity", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     List<WorkoutExerciseEntity> workoutExerciseList;
 }

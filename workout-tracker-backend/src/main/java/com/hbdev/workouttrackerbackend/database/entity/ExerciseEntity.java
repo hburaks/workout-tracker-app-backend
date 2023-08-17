@@ -11,20 +11,21 @@ import java.util.List;
 @Entity
 @Data
 public class ExerciseEntity extends BaseEntity {
-    @Column
     String name;
-    @Column
     String description;
-    @Column
     String videoUrl;
-    @Column
     String imageUrl;
     @Enumerated(EnumType.STRING)
     BodyPartTypeEnum bodyPartType;
-    @OneToMany(mappedBy = "exerciseEntity", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "exerciseEntity", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     List<WorkoutExerciseEntity> workoutExerciseEntityList;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "max_volume_exercise_id")
     WorkoutExerciseEntity maxVolumeWorkoutExerciseEntity;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "max_weight_set_id")
     SetEntity maxWeightSetEntity;
 }

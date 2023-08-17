@@ -10,15 +10,13 @@ import java.util.List;
 @Entity
 @Data
 public class WorkoutExerciseEntity extends BaseEntity {
-    @OneToMany(mappedBy = "workoutExerciseEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "workoutExerciseEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<SetEntity> setEntities;
-    @Column
     String notes;
-    @Column
     int order;
-    @Column
     int restTime;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exercise_id")
     ExerciseEntity exerciseEntity;
 
 }
