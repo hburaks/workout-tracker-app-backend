@@ -10,19 +10,14 @@ import java.util.List;
 @Entity
 @Data
 public class WorkoutEntity extends BaseEntity {
-    @Column
     String name;
-    @Column
     String imageUrl;
-    @Column
     String videoUrl;
-    @Column
     String notes;
     @Column
     int duration;
-    @OneToMany(mappedBy = "workoutEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "workoutEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<WorkoutExerciseEntity> workoutExerciseList;
-    @Column
     double totalWeight;
 
 }

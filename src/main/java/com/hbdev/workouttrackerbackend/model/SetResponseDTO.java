@@ -1,4 +1,4 @@
-package com.hbdev.workouttrackerbackend.database.entity;
+package com.hbdev.workouttrackerbackend.model;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.Column;
@@ -9,8 +9,12 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class SetEntity extends BaseEntity {
+public class SetResponseDTO extends BaseEntity {
+
+    @Column
     double weight;
+    @Column
     int reps;
+    @Column
     int order;
 }
