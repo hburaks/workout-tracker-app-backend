@@ -18,7 +18,7 @@ public class SetController extends BaseController<SetRequestDTO,
         SetEntity,
         SetMapperI,
         SetRepository,
-        SetService>{
+        SetService> {
     @Autowired
     SetService setService;
 

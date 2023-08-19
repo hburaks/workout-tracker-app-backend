@@ -10,5 +10,5 @@ public enum BodyPartTypeEnum {
     LEGS,
     CORE,
     CARDIO,
-    OTHER;
+    OTHER
 }

@@ -1,23 +1,21 @@
 package com.hbdev.workouttrackerbackend.model.requestDTO;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
-import com.hbdev.workouttrackerbackend.database.entity.SetEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class WorkoutExerciseRequestDTO extends BaseRequestDTO {
     private String notes;
     private int setOrder;
     private int restTime;
-    private ExerciseEntity exerciseEntity;
+    private ExerciseRequestDTO exerciseRequestDTO;
 
-    private WorkoutTemplateEntity workoutTemplateEntity;
+    private WorkoutTemplateRequestDTO workoutTemplateRequestDTO;
 
-    private WorkoutEntity workoutEntity;
+    private WorkoutRequestDTO workoutRequestDTO;
 
-    private List<SetEntity> setEntities;
+    private List<SetRequestDTO> setRequestDTOList;
 
 }
