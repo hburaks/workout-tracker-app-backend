@@ -1,14 +1,13 @@
 package com.hbdev.workouttrackerbackend.model;
 
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
-import com.hbdev.workouttrackerbackend.util.BaseDTO;
-import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import jakarta.persistence.*;
+import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Data;
 
 import java.util.List;
 
-public class ExerciseResponseDTO extends BaseDTO {
+@Data
+public class ExerciseResponseDTO extends BaseResponseDTO {
     private String name;
     private String description;
     private String videoUrl;

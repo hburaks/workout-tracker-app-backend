@@ -1,45 +1,38 @@
 package com.hbdev.workouttrackerbackend.util;
 
-
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
+import com.hbdev.workouttrackerbackend.util.dbutil.IBaseRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-public abstract class BaseService<
-        DTO extends BaseDTO,
-        Entity extends BaseEntity,
-        RequestDTO extends BaseDTO,
-        Mapper extends GenericMapper<Entity, DTO, RequestDTO>,
-        Repository extends BaseRepository<Entity>> {
-
+public abstract class BaseService<ResponseDTO extends BaseResponseDTO, RequestDTO extends BaseRequestDTO, Entity extends BaseEntity, Mapper extends IBaseMapper<Entity, ResponseDTO, RequestDTO>, Repository extends IBaseRepository<Entity>> {
     protected abstract Mapper getBaseMapper();
 
 
     protected abstract Repository getBaseRepository();
 
-    public DTO save(RequestDTO requestDTO) {
-        Entity entity = getBaseMapper().dtoToEntity(requestDTO);
-        getBaseRepository().save(entity);
-        return getBaseMapper().entityToDto(entity);
-    }
-
-    public List<DTO> getAll() {
+    public List<ResponseDTO> getAll() {
         List<Entity> entityList = getBaseRepository().findAll();
-        return getBaseMapper().entityListToDtoList(entityList);
+        return getBaseMapper().entityListToResponseDtoList(entityList);
     }
 
-    public DTO update(UUID uuid, RequestDTO requestDTO) {
+    public ResponseDTO save(RequestDTO requestDTO) {
+        Entity entity = getBaseMapper().requestDtoToEntity(requestDTO);
+        getBaseRepository().save(entity);
+        return getBaseMapper().entityToResponseDto(entity);
+    }
+
+
+    public ResponseDTO update(UUID uuid, RequestDTO requestDTO) {
         Entity entity = getBaseRepository().findByUuid(uuid).orElse(null);
         if (entity == null) {
             return null;
         }
-        return getBaseMapper().entityToDto(getBaseRepository().save(getBaseMapper().updateEntityFromDto(requestDTO, entity)));
+        return getBaseMapper().entityToResponseDto(getBaseRepository().save(getBaseMapper().updateEntityFromRequestDTO(requestDTO, entity)));
     }
 
-
-    public Boolean delete(UUID uuid) {
+    public Boolean deleteByUuid(UUID uuid) {
         Entity entity = getBaseRepository().findByUuid(uuid).orElse(null);
         if (entity != null) {
             getBaseRepository().delete(entity);
@@ -48,13 +41,13 @@ public abstract class BaseService<
         return false;
     }
 
-
-    public DTO getByUuid(UUID uuid) {
+    public ResponseDTO getByUuid(UUID uuid) {
         Entity entity = getBaseRepository().findByUuid(uuid).orElse(null);
         if (entity != null) {
-            return getBaseMapper().entityToDto(entity);
+            return getBaseMapper().entityToResponseDto(entity);
         } else {
             return null;
         }
     }
+
 }

@@ -1,10 +1,7 @@
 package com.hbdev.workouttrackerbackend.util.dbutil;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,8 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.util.UUID;
-
-
 
 @Data
 @MappedSuperclass
@@ -36,7 +31,7 @@ public class BaseEntity {
     private Date lastModifiedDate;
 
     @PrePersist // database e kaydedilmeden çalışan metod
-    private void prePersist() {
-        this.uuid =UUID.randomUUID();
+    protected void prePersist() {
+        this.uuid = UUID.randomUUID();
     }
 }
