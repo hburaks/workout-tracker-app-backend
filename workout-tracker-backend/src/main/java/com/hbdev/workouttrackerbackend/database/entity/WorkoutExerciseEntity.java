@@ -29,4 +29,5 @@ public class WorkoutExerciseEntity extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workoutExerciseEntity")
     private List<SetEntity> setEntities;
 
+
 }

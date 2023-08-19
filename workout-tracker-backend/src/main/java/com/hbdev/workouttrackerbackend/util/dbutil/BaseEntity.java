@@ -30,7 +30,7 @@ public class BaseEntity {
     @LastModifiedDate
     private Date lastModifiedDate;
 
-    @PrePersist // database e kaydedilmeden çalışan metod
+    @PrePersist
     protected void prePersist() {
         this.uuid = UUID.randomUUID();
     }

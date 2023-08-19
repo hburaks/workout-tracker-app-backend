@@ -1,14 +1,14 @@
 package com.hbdev.workouttrackerbackend.model;
 
-import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class WorkoutTemplateResponseDTO extends BaseResponseDTO {
     private String name;
-    private List<WorkoutExerciseEntity> workoutExerciseList;
+    private List<WorkoutExerciseResponseDTO> workoutExerciseResponseDTOList;
 
-    private ProfileEntity profileEntity;
+    private ProfileResponseDTO profileResponseDTO;
 }

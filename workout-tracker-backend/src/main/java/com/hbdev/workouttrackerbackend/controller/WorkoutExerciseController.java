@@ -1,14 +1,10 @@
 package com.hbdev.workouttrackerbackend.controller;
 
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutExerciseRepository;
 import com.hbdev.workouttrackerbackend.mapper.WorkoutExerciseMapperI;
-import com.hbdev.workouttrackerbackend.model.ExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.model.WorkoutExerciseResponseDTO;
-import com.hbdev.workouttrackerbackend.model.requestDTO.ExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutExerciseRequestDTO;
-import com.hbdev.workouttrackerbackend.service.ExerciseService;
 import com.hbdev.workouttrackerbackend.service.WorkoutExerciseService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;

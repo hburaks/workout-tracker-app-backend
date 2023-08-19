@@ -15,9 +15,12 @@ public class WorkoutEntity extends BaseEntity {
     private String videoUrl;
     private String notes;
     private int duration;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<WorkoutExerciseEntity> workoutExerciseList;
+
+
     private double totalWeight;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "workoutEntity")
+    private List<WorkoutExerciseEntity> workoutExerciseList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
