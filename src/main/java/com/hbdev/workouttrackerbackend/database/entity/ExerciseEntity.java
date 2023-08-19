@@ -15,6 +15,8 @@ public class ExerciseEntity extends BaseEntity {
     private String description;
     private String videoUrl;
     private String imageUrl;
+
+
     @Enumerated(EnumType.STRING)
     private BodyPartTypeEnum bodyPartType;
 

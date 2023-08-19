@@ -1,21 +1,17 @@
 package com.hbdev.workouttrackerbackend.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.UUID;
-
 @Data
-public class BaseDTO {
-
-    @JsonIgnore
+public class BaseResponseDTO {
     private Long id;
-    private UUID uuid;
-    @JsonIgnore
-    private Date creationDate;
-    @JsonIgnore
-    private Date updatedDate;
 
+    private UUID uuid;
+
+    private Date creationDate;
+
+    private Date lastModifiedDate;
 
 }

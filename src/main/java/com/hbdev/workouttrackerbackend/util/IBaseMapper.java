@@ -1,25 +1,21 @@
 package com.hbdev.workouttrackerbackend.util;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-public interface IBaseMapper<DTO extends BaseDTO, Entity extends BaseEntity, RequestDTO extends BaseDTO> {
+public interface IBaseMapper<Entity extends BaseEntity,
+        ResponseDTO extends BaseResponseDTO,
+        RequestDTO extends BaseRequestDTO> {
 
-    DTO entityToDTO(Entity entity);
+    Entity requestDtoToEntity(RequestDTO requestDTO);
 
-    Entity dtoToEntity(DTO dto);
+    ResponseDTO entityToResponseDto(Entity entity);
 
-    List<DTO> entityListToDTOList(List<Entity> entityList);
+    List<ResponseDTO> entityListToResponseDtoList(List<Entity> entityList);
 
-    List<Entity> dtoListTOEntityList(List<DTO> dtoList);
-
-
-    Entity requestDTOToEntity(RequestDTO dto);
-
-
-    List<Entity> requestDtoListTOEntityList(List<RequestDTO> dtoList);
-    Entity requestDtoToExistEntity(RequestDTO dto, Entity entity);
+    Entity updateEntityFromRequestDTO(RequestDTO requestDTO, @MappingTarget Entity entity);
 
 
 }
