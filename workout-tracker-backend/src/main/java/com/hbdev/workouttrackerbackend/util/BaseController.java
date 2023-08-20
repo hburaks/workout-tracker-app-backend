@@ -1,7 +1,7 @@
 package com.hbdev.workouttrackerbackend.util;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import com.hbdev.workouttrackerbackend.util.dbutil.IBaseRepository;
+import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +12,8 @@ import java.util.UUID;
 public abstract class BaseController<RequestDTO extends BaseRequestDTO,
         ResponseDTO extends BaseResponseDTO,
         Entity extends BaseEntity,
-        Mapper extends IBaseMapper<Entity, ResponseDTO, RequestDTO>,
-        Repository extends IBaseRepository<Entity>,
+        Mapper extends BaseMapper<Entity, ResponseDTO, RequestDTO>,
+        Repository extends BaseRepository<Entity>,
         Service extends BaseService<ResponseDTO, RequestDTO, Entity, Mapper, Repository>> {
 
     protected abstract Service getService();
@@ -62,5 +62,7 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
 }

@@ -16,18 +16,18 @@ public class WorkoutExerciseEntity extends BaseEntity {
     private int restTime;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id")
-    private ExerciseEntity exerciseEntity;
+    private ExerciseEntity exercise;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_template_id")
-    private WorkoutTemplateEntity workoutTemplateEntity;
+    private WorkoutTemplateEntity workoutTemplate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_entity_id")
-    private WorkoutEntity workoutEntity;
+    private WorkoutEntity workout;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workoutExerciseEntity")
-    private List<SetEntity> setEntities;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workoutExercise")
+    private List<SetEntity> setList;
 
 
 }

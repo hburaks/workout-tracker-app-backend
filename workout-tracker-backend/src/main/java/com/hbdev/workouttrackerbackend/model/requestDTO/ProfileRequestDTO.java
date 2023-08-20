@@ -9,7 +9,7 @@ import java.util.List;
 public class ProfileRequestDTO extends BaseRequestDTO {
     private String firstName;
     private String lastName;
-    private List<WorkoutRequestDTO> workoutRequestDTOList;
-    private List<WorkoutTemplateRequestDTO> workoutTemplateRequestDTOList;
+   /* private List<WorkoutRequestDTO> workoutList;
+    private List<WorkoutTemplateRequestDTO> workoutTemplateList;*/
 
 }

@@ -1,4 +1,4 @@
-package com.hbdev.workouttrackerbackend.model;
+package com.hbdev.workouttrackerbackend.model.responseDTO;
 
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
@@ -12,8 +12,8 @@ public class ExerciseResponseDTO extends BaseResponseDTO {
     private String description;
     private String videoUrl;
     private String imageUrl;
+
     private BodyPartTypeEnum bodyPartType;
-    private List<WorkoutExerciseResponseDTO> workoutExerciseResponseDTOList;
-    private WorkoutExerciseResponseDTO maxVolumeWorkoutExerciseResponseDTO;
-    private SetResponseDTO maxWeightSetResponseDTO;
+    private WorkoutExerciseResponseDTO maxVolumeWorkoutExercise;
+    private SetResponseDTO maxWeightSet;
 }

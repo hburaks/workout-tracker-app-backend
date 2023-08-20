@@ -10,5 +10,5 @@ public class SetRequestDTO extends BaseRequestDTO {
     private int reps;
     private int setOrder;
 
-    private WorkoutExerciseRequestDTO workoutExerciseRequestDTO;
+    private WorkoutExerciseRequestDTO workoutExercise;
 }

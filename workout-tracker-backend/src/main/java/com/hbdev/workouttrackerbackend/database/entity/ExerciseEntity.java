@@ -20,12 +20,9 @@ public class ExerciseEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private BodyPartTypeEnum bodyPartType;
 
-    @OneToMany(mappedBy = "exerciseEntity", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<WorkoutExerciseEntity> workoutExerciseEntityList;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private WorkoutExerciseEntity maxVolumeWorkoutExercise;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    private WorkoutExerciseEntity maxVolumeWorkoutExerciseEntity;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private SetEntity maxWeightSetEntity;
+    private SetEntity maxWeightSet;
 }

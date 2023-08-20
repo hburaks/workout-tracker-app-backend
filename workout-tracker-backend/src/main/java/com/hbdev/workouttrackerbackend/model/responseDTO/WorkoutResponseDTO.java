@@ -1,4 +1,4 @@
-package com.hbdev.workouttrackerbackend.model;
+package com.hbdev.workouttrackerbackend.model.responseDTO;
 
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class WorkoutResponseDTO extends BaseResponseDTO {
     private int duration;
     private double totalWeight;
 
-    private List<WorkoutExerciseResponseDTO> workoutExerciseResponseDTOList;
-    private ProfileResponseDTO profileResponseDTO;
+    private List<WorkoutExerciseResponseDTO> workoutExercise;
+    private ProfileResponseDTO profile;
 
 }

@@ -12,10 +12,10 @@ import java.util.List;
 public class WorkoutTemplateEntity extends BaseEntity {
     @Column
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "workoutTemplateEntity")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "workoutTemplate")
     private List<WorkoutExerciseEntity> workoutExerciseList;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_id")
-    private ProfileEntity profileEntity;
+    private ProfileEntity profile;
 }
