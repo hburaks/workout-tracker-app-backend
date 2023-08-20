@@ -12,9 +12,9 @@ import java.util.List;
 public class ProfileEntity extends BaseEntity {
     private String firstName;
     private String lastName;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<WorkoutEntity> workoutEntityList;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<WorkoutTemplateEntity> workoutTemplateEntityList;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private List<WorkoutEntity> workoutList;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private List<WorkoutTemplateEntity> workoutTemplateList;
 
 }

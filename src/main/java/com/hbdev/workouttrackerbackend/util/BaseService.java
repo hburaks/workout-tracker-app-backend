@@ -1,12 +1,13 @@
 package com.hbdev.workouttrackerbackend.util;
 
+import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import com.hbdev.workouttrackerbackend.util.dbutil.IBaseRepository;
+import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-public abstract class BaseService<ResponseDTO extends BaseResponseDTO, RequestDTO extends BaseRequestDTO, Entity extends BaseEntity, Mapper extends IBaseMapper<Entity, ResponseDTO, RequestDTO>, Repository extends IBaseRepository<Entity>> {
+public abstract class BaseService<ResponseDTO extends BaseResponseDTO, RequestDTO extends BaseRequestDTO, Entity extends BaseEntity, Mapper extends BaseMapper<Entity, ResponseDTO, RequestDTO>, Repository extends BaseRepository<Entity>> {
     protected abstract Mapper getBaseMapper();
 
 
@@ -48,6 +49,10 @@ public abstract class BaseService<ResponseDTO extends BaseResponseDTO, RequestDT
         } else {
             return null;
         }
+    }
+
+    public Entity getEntityByUuid(UUID uuid) {
+        return getBaseRepository().findByUuid(uuid).orElse(null);
     }
 
 }

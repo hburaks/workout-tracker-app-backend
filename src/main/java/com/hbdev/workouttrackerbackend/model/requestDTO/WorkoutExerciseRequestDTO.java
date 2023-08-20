@@ -10,12 +10,12 @@ public class WorkoutExerciseRequestDTO extends BaseRequestDTO {
     private String notes;
     private int setOrder;
     private int restTime;
-    private ExerciseRequestDTO exerciseRequestDTO;
+    private ExerciseRequestDTO exercise;
 
-    private WorkoutTemplateRequestDTO workoutTemplateRequestDTO;
+    private WorkoutTemplateRequestDTO workoutTemplate;
 
-    private WorkoutRequestDTO workoutRequestDTO;
+    private WorkoutRequestDTO workout;
 
-    private List<SetRequestDTO> setRequestDTOList;
+    private List<SetRequestDTO> setList;
 
 }

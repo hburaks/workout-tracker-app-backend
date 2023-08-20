@@ -15,5 +15,5 @@ public class SetEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_exercise_id")
-    WorkoutExerciseEntity workoutExerciseEntity;
+    WorkoutExerciseEntity workoutExercise;
 }

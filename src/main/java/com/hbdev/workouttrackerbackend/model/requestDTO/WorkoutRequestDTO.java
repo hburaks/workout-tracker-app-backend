@@ -14,6 +14,6 @@ public class WorkoutRequestDTO extends BaseRequestDTO {
     private int duration;
     private double totalWeight;
 
-    private List<WorkoutExerciseRequestDTO> workoutExerciseRequestDTOList;
-    private ProfileRequestDTO profileRequestDTO;
+    private List<WorkoutExerciseRequestDTO> workoutExercise;
+    private ProfileRequestDTO profile;
 }
