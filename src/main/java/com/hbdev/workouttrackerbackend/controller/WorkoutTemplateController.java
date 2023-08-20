@@ -7,19 +7,15 @@ import com.hbdev.workouttrackerbackend.model.WorkoutTemplateResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutTemplateRequestDTO;
 import com.hbdev.workouttrackerbackend.service.WorkoutTemplateService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("workout-template")
-public class WorkoutTemplateController extends BaseController<WorkoutTemplateRequestDTO, WorkoutTemplateResponseDTO,
-        WorkoutTemplateEntity,
-        WorkoutTemplateMapperI,
-        WorkoutTemplateRepository,
-        WorkoutTemplateService> {
-    @Autowired
-    WorkoutTemplateService workoutTemplateService;
+@RequiredArgsConstructor
+public class WorkoutTemplateController extends BaseController<WorkoutTemplateRequestDTO, WorkoutTemplateResponseDTO, WorkoutTemplateEntity, WorkoutTemplateMapperI, WorkoutTemplateRepository, WorkoutTemplateService> {
+    private final WorkoutTemplateService workoutTemplateService;
 
 
     @Override

@@ -6,13 +6,13 @@ import com.hbdev.workouttrackerbackend.mapper.ProfileMapperI;
 import com.hbdev.workouttrackerbackend.model.ProfileResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.ProfileRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileService extends BaseService<ProfileResponseDTO, ProfileRequestDTO, ProfileEntity, ProfileMapperI, ProfileRepository> {
-    @Autowired
-    ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
 
 
     @Override

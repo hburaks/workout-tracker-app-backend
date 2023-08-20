@@ -6,14 +6,15 @@ import com.hbdev.workouttrackerbackend.mapper.WorkoutExerciseMapperI;
 import com.hbdev.workouttrackerbackend.model.WorkoutExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@RequiredArgsConstructor
 public class WorkoutExerciseService extends BaseService<WorkoutExerciseResponseDTO, WorkoutExerciseRequestDTO, WorkoutExerciseEntity, WorkoutExerciseMapperI, WorkoutExerciseRepository> {
-    @Autowired
-    WorkoutExerciseRepository workoutExerciseRepository;
+    private final WorkoutExerciseRepository workoutExerciseRepository;
 
 
     @Override

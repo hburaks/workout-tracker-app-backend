@@ -7,19 +7,21 @@ import com.hbdev.workouttrackerbackend.model.WorkoutExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.service.WorkoutExerciseService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("workout-exercise")
+@RequiredArgsConstructor
 public class WorkoutExerciseController extends BaseController<WorkoutExerciseRequestDTO, WorkoutExerciseResponseDTO,
         WorkoutExerciseEntity,
         WorkoutExerciseMapperI,
         WorkoutExerciseRepository,
         WorkoutExerciseService> {
-    @Autowired
-    WorkoutExerciseService workoutExerciseService;
+    private final WorkoutExerciseService workoutExerciseService;
 
 
     @Override
