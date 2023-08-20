@@ -6,14 +6,14 @@ import com.hbdev.workouttrackerbackend.mapper.SetMapperI;
 import com.hbdev.workouttrackerbackend.model.SetResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.SetRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@RequiredArgsConstructor
 public class SetService extends BaseService<SetResponseDTO, SetRequestDTO, SetEntity, SetMapperI, SetRepository> {
-    @Autowired
-    SetRepository setRepository;
+    private final SetRepository setRepository;
 
 
     @Override
