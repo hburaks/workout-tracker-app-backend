@@ -2,26 +2,23 @@ package com.hbdev.workouttrackerbackend.util;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
+import com.hbdev.workouttrackerbackend.util.pageable.BaseFilterRequestDTO;
+import com.hbdev.workouttrackerbackend.util.pageable.PageResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
-public abstract class BaseController<RequestDTO extends BaseRequestDTO,
-        ResponseDTO extends BaseResponseDTO,
-        Entity extends BaseEntity,
-        Mapper extends BaseMapper<Entity, ResponseDTO, RequestDTO>,
-        Repository extends BaseRepository<Entity>,
-        Service extends BaseService<ResponseDTO, RequestDTO, Entity, Mapper, Repository>> {
+public abstract class BaseController<RequestDTO extends BaseRequestDTO, ResponseDTO extends BaseResponseDTO, Entity extends BaseEntity, Mapper extends BaseMapper<Entity, ResponseDTO, RequestDTO>, Repository extends BaseRepository<Entity>, Service extends BaseService<ResponseDTO, RequestDTO, Entity, Mapper, Repository>> {
 
     protected abstract Service getService();
 
-    @GetMapping
-    public ResponseEntity<List<ResponseDTO>> getAll() {
-        return new ResponseEntity<>(getService().getAll(), HttpStatus.OK);
+    @PostMapping("get-all-filter")
+    public ResponseEntity<PageResponseDTO<ResponseDTO>> getAll(@RequestBody BaseFilterRequestDTO baseFilterRequestDTO) {
+        return new ResponseEntity<>(getService().getAll(baseFilterRequestDTO), HttpStatus.OK);
     }
+
 
     @PostMapping
     public ResponseEntity<ResponseDTO> save(@RequestBody RequestDTO requestDTO) {
@@ -62,7 +59,6 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 
 
 }
