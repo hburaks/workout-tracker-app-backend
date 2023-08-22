@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.util;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
 
