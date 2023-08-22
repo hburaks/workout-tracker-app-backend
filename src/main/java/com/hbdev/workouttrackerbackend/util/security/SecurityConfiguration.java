@@ -36,7 +36,7 @@ public class SecurityConfiguration {
             "/api/public/authenticate",
             "/actuator/*",
             "/swagger-ui/**",
-//            "/**"
+            "/**"
 
     };
     private static final String[] USER_AUTH_WHITELIST = {
