@@ -2,7 +2,7 @@ package com.hbdev.workouttrackerbackend.util.security;
 
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +21,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
 
     private static final String[] AUTH_WHITELIST = {
@@ -35,23 +36,18 @@ public class SecurityConfiguration {
             "/api/public/authenticate",
             "/actuator/*",
             "/swagger-ui/**",
-            "/**"
+//            "/**"
 
     };
     private static final String[] USER_AUTH_WHITELIST = {
-            "/selam"
+            "/**"
 
     };
-    @Autowired
-    private UserEntityRepository userEntityRepository;
-    @Autowired
-    private JWTFilter filter;
-    @Autowired
-    private SecurityService uds;
+    private final JWTFilter filter;
+    private final SecurityService uds;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        System.out.println("security");
         http.headers().frameOptions().disable();
         http.csrf().disable()
                 .httpBasic().disable()
