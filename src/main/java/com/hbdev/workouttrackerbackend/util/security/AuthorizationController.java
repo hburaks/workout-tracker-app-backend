@@ -1,6 +1,6 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,15 +15,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("auth")
+@RequiredArgsConstructor
 public class AuthorizationController {
 
 
-    @Autowired
-    UserService userService;
-    @Autowired
-    private AuthenticationManager authManager;
-    @Autowired
-    private JWTUtil jwtUtil;
+    private final UserService userService;
+    private final AuthenticationManager authManager;
+    private final JWTUtil jwtUtil;
 
     @PostMapping("login")
     public Map<String, Object> loginHandler(@RequestBody LoginRequestDTO body) {
@@ -36,8 +34,6 @@ public class AuthorizationController {
 
         Map<String, Object> authorizationMap = new HashMap<>();
         authorizationMap.put("jwt-token", token);
-        //authorizationMap.put("gender", user.getGenderEnum() != null ? user.getGenderEnum().name() : "");
-        //Collections.singletonMap("jwt-token", token);
 
         return authorizationMap;
     }

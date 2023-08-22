@@ -8,9 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @NoRepositoryBean
-public interface BaseRepository<Entity extends BaseEntity> extends JpaRepository<Entity, Long> {
-    Optional<Entity> findByUuid(UUID uuid);
-
+public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
+    Optional<T> findByUuid(UUID uuid);
 
     @Transactional
     void deleteByUuid(UUID uuid);

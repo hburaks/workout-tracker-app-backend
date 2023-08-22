@@ -20,7 +20,7 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
 
     @GetMapping
     public ResponseEntity<List<ResponseDTO>> getAll() {
-        return new ResponseEntity<List<ResponseDTO>>(getService().getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(getService().getAll(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -29,7 +29,7 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
             ResponseDTO responseDTO = getService().save(requestDTO);
             return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -39,7 +39,7 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
             ResponseDTO responseDTO = getService().getByUuid(uuid);
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -59,7 +59,7 @@ public abstract class BaseController<RequestDTO extends BaseRequestDTO,
             ResponseDTO responseDTO = getService().update(uuid, requestDTO);
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

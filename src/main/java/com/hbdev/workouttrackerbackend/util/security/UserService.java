@@ -2,7 +2,6 @@ package com.hbdev.workouttrackerbackend.util.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -26,7 +25,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<RoleEntity> roles = new HashSet<>();
         RoleEntity roleEntity = roleRepository.findByName("user").orElse(null);
-        if(roleEntity == null){
+        if (roleEntity == null) {
             roleEntity = new RoleEntity();
             roleEntity.setName("user");
             roleEntity = roleRepository.save(roleEntity);
