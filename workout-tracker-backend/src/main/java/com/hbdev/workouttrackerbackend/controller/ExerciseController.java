@@ -2,6 +2,7 @@ package com.hbdev.workouttrackerbackend.controller;
 
 import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.repository.ExerciseRepository;
+import com.hbdev.workouttrackerbackend.database.specification.ExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.ExerciseMapper;
 import com.hbdev.workouttrackerbackend.model.responseDTO.ExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.ExerciseRequestDTO;
@@ -19,6 +20,7 @@ public class ExerciseController extends BaseController<ExerciseRequestDTO,
         ExerciseEntity,
         ExerciseMapper,
         ExerciseRepository,
+        ExerciseSpecification,
         ExerciseService> {
     private final ExerciseService exerciseService;
 

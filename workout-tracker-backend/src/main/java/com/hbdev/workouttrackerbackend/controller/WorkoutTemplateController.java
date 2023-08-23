@@ -2,9 +2,10 @@ package com.hbdev.workouttrackerbackend.controller;
 
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
+import com.hbdev.workouttrackerbackend.database.specification.WorkoutTemplateSpecification;
 import com.hbdev.workouttrackerbackend.mapper.WorkoutTemplateMapper;
-import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutTemplateResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutTemplateRequestDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutTemplateResponseDTO;
 import com.hbdev.workouttrackerbackend.service.WorkoutTemplateService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("workout-template")
 @RequiredArgsConstructor
-public class WorkoutTemplateController extends BaseController<WorkoutTemplateRequestDTO, WorkoutTemplateResponseDTO, WorkoutTemplateEntity, WorkoutTemplateMapper, WorkoutTemplateRepository, WorkoutTemplateService> {
+public class WorkoutTemplateController extends BaseController<WorkoutTemplateRequestDTO, WorkoutTemplateResponseDTO, WorkoutTemplateEntity, WorkoutTemplateMapper, WorkoutTemplateRepository, WorkoutTemplateSpecification, WorkoutTemplateService> {
     private final WorkoutTemplateService workoutTemplateService;
 
 
@@ -35,7 +36,7 @@ public class WorkoutTemplateController extends BaseController<WorkoutTemplateReq
             WorkoutTemplateResponseDTO responseDTO = getService().add(uuid, uuidToAdd);
             return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
