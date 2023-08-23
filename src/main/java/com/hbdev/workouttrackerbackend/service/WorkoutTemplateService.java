@@ -1,10 +1,10 @@
 package com.hbdev.workouttrackerbackend.service;
 
 import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
+import com.hbdev.workouttrackerbackend.database.specification.WorkoutTemplateSpecification;
 import com.hbdev.workouttrackerbackend.mapper.WorkoutTemplateMapper;
 import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutTemplateResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutTemplateRequestDTO;
@@ -14,30 +14,40 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseDTO, WorkoutTemplateRequestDTO, WorkoutTemplateEntity, WorkoutTemplateMapper, WorkoutTemplateRepository> {
+public class WorkoutTemplateService extends BaseService<
+        WorkoutTemplateResponseDTO,
+        WorkoutTemplateRequestDTO,
+        WorkoutTemplateEntity,
+        WorkoutTemplateMapper,
+        WorkoutTemplateRepository,
+        WorkoutTemplateSpecification> {
     private final WorkoutTemplateRepository workoutTemplateRepository;
     private final ExerciseService exerciseService;
-    private final WorkoutExerciseService workoutExerciseService;
+    private final WorkoutTemplateSpecification workoutTemplateSpecification;
 
     @Override
-    protected WorkoutTemplateMapper getBaseMapper() {
+    protected WorkoutTemplateMapper getMapper() {
         return WorkoutTemplateMapper.INSTANCE;
     }
 
     @Override
-    protected WorkoutTemplateRepository getBaseRepository() {
+    protected WorkoutTemplateRepository getRepository() {
         return workoutTemplateRepository;
     }
+
+    @Override
+    protected WorkoutTemplateSpecification getSpecification() {
+        return workoutTemplateSpecification;
+    }
+
     @Transactional
     public WorkoutTemplateResponseDTO add(UUID uuid, UUID uuidToAdd) {
         ExerciseEntity exercise = exerciseService.getEntityByUuid(uuidToAdd);
         WorkoutTemplateEntity workoutTemplate = getEntityByUuid(uuid);
-
 
         WorkoutExerciseEntity workoutExercise = exerciseToWorkoutExercise(exercise);
         workoutExercise.setWorkoutTemplate(workoutTemplate);
@@ -48,7 +58,7 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
 
         workoutTemplate = workoutTemplateRepository.save(workoutTemplate);
 
-        return getBaseMapper().entityToResponseDto(workoutTemplate);
+        return getMapper().entityToResponseDto(workoutTemplate);
 
     }
 
