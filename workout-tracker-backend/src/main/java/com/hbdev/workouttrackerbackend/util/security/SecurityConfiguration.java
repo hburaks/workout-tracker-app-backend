@@ -35,11 +35,17 @@ public class SecurityConfiguration {
             "/api/public/**",
             "/api/public/authenticate",
             "/actuator/*",
-            "/swagger-ui/**",
-            "/**"
+            "/**",
+
 
     };
     private static final String[] USER_AUTH_WHITELIST = {
+
+            "/workout-template",
+            "/register/**",
+    };
+
+    private static final String[] ADMIN_AUTH_WHITELIST = {
             "/**"
 
     };
@@ -63,6 +69,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .requestMatchers(USER_AUTH_WHITELIST).hasRole("user")
+                .requestMatchers(ADMIN_AUTH_WHITELIST).hasRole("admin")
                 .and()
 
                 .userDetailsService(uds)

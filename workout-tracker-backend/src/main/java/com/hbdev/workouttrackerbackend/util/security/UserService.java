@@ -1,5 +1,9 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
+import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
+import com.hbdev.workouttrackerbackend.model.requestDTO.ProfileRequestDTO;
+import com.hbdev.workouttrackerbackend.service.ProfileService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,19 +24,51 @@ public class UserService {
     UserMapper userMapper;
 
 
-    public void saveUserByRole(UserRequestDTO userRequestDTO) {
-        UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Set<RoleEntity> roles = new HashSet<>();
-        RoleEntity roleEntity = roleRepository.findByName("user").orElse(null);
-        if (roleEntity == null) {
-            roleEntity = new RoleEntity();
-            roleEntity.setName("user");
-            roleEntity = roleRepository.save(roleEntity);
+    @Transactional
+
+    public boolean saveUserByRole(UserRequestDTO userRequestDTO) {
+        if (!isEmailExist(userRequestDTO.getEmail())) {
+            UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
+            user.setEnable(false);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            Set<RoleEntity> roles = new HashSet<>();
+            RoleEntity roleEntity = roleRepository.findByName("user").orElse(null);
+            if (roleEntity == null) {
+                roleEntity = new RoleEntity();
+                roleEntity.setName("user");
+                roleEntity = roleRepository.save(roleEntity);
+            }
+            roles.add(roleEntity);
+            user.setRoles(roles);
+            userRepository.save(user);
+            return true;
         }
-        roles.add(roleEntity);
-        user.setRoles(roles);
-        userRepository.save(user);
+        return false;
+    }
+
+    @Transactional
+    public boolean saveAdmin(UserRequestDTO userRequestDTO) {
+        if (!isEmailExist(userRequestDTO.getEmail())) {
+            UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
+            user.setEnable(false);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            Set<RoleEntity> roles = new HashSet<>();
+            RoleEntity roleEntity = roleRepository.findByName("admin").orElse(null);
+            if (roleEntity == null) {
+                roleEntity = new RoleEntity();
+                roleEntity.setName("admin");
+                roleEntity = roleRepository.save(roleEntity);
+            }
+            roles.add(roleEntity);
+            user.setRoles(roles);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmailExist(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 
 

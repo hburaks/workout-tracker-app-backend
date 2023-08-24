@@ -1,6 +1,7 @@
 package com.hbdev.workouttrackerbackend.database.entity;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
+import com.hbdev.workouttrackerbackend.util.security.UserEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,11 +11,12 @@ import java.util.List;
 @Entity
 @Table
 public class ProfileEntity extends BaseEntity {
-    private String firstName;
-    private String lastName;
     @OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<WorkoutEntity> workoutList;
     @OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<WorkoutTemplateEntity> workoutTemplateList;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserEntity user;
 
 }

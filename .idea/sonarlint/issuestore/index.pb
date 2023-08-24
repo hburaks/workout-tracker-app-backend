@@ -1,8 +1,6 @@
 
 L
 workout-tracker-frontend.iml,6/e/6e6b0e8b8f4193ba3d5bc5e888af205236b4bd27
-æ
-çworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/responseDTO/WorkoutExerciseWithoutWorkoutTemplateResponseDTO.java,d/3/d302048aa0ccc35bd559c2a9a5a5a85a97126464
 M
 .git/refs/remotes/origin/main,c/7/c77de788aee8fe5a80c9075adeaaad7a06af1bb4
 C
@@ -31,20 +29,14 @@ xworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/database/
 _workout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/mapper/ProfileMapper.java,0/d/0d593010f24feb031a3acff701a8787315c03fbf
 ó
 gworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/mapper/WorkoutExerciseMapper.java,d/4/d434e90527d3e76413885482b898538e12df9620
-û
-nworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/requestDTO/ExerciseRequestDTO.java,7/0/7023a66cac2425cb704af37ff6ebf87ebc609a23
 ã
 [workout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/mapper/SetMapper.java,5/a/5a7a882092875a772b69643abfa43c2b9ee2edf5
-†
-pworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/responseDTO/ExerciseResponseDTO.java,3/c/3cb5607d0dbcb87770abf257955d2e90b59584f3
 õ
 kworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/responseDTO/SetResponseDTO.java,3/b/3b4bcccc3cdf65997a6ed9ab1b63df7520bd449a
 ï
 eworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/dbutil/BaseRepository.java,1/0/1064692bad0a38e3f52dc7f909c842eaa8be5e02
 ß
 wworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/responseDTO/WorkoutExerciseResponseDTO.java,c/d/cd4ce229a6dbe833d1e35310024806d9f6ef881a
-ù
-mworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/requestDTO/WorkoutRequestDTO.java,f/d/fdce6c10b8e3a5122866e738039205043c2787e1
 [
 +workout-tracker-frontend/.vscode/tasks.json,8/d/8d129546b056d5280bf513c5fd7b6f961ba3ae27
 •
@@ -53,8 +45,6 @@ uworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/req
 uworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/requestDTO/WorkoutExerciseRequestDTO.java,4/5/4555a8c9ba2651748943bc346806c27e0fcc56c9
 ó
 gworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/enums/BodyPartTypeEnum.java,4/f/4fec06185685430e71e269145aba9833f21a0384
-ü
-oworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/model/responseDTO/WorkoutResponseDTO.java,c/c/ccf6727428380e5ac7d4a558f5ec1b76f9a16d87
 \
 ,workout-tracker-frontend/.vscode/launch.json,1/8/18551fb13e1274a125eac7375f06f862b85fc18d
 `
@@ -63,8 +53,6 @@ i
 9workout-tracker-frontend/src/app/service/login.service.ts,6/c/6cc5f7e0d49a6886ec1d0896d92a1e122dc7a9cb
 ä
 Zworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/BaseMapper.java,1/e/1e80fc933969101e6e49d77b74a9129f0e1a60d6
-ë
-aworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/dbutil/BaseEntity.java,2/4/248429c809462b1307969e07c8db99f2a1e6114b
 è
 _workout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/BaseResponseDTO.java,7/2/726b00208362c7f68e105ca91c00c3222f9b290f
 \
@@ -77,8 +65,6 @@ l
 <workout-tracker-frontend/src/app/header/header.component.css,9/3/93a1cfe5de73ce16335e5303937f64a787f1d4bf
 P
  workout-tracker-backend/mvnw.cmd,7/3/73c3a9a16fff405a67c1d2e9ffcd5eb3a2d43689
-R
-"workout-tracker-backend/.gitignore,7/0/70638b5f12b4b222139ac03f2625ee5b0c744e1f
 L
 workout-tracker-backend/mvnw,9/f/9fcfef8092c6aefdcb7a2f553a515ea87969890c
 n
@@ -91,8 +77,6 @@ a
 .workout-tracker-frontend/src/app/app.module.ts,9/0/906e47cb84b83818c0cebf57db01dbbdb2e8d20f
 j
 :workout-tracker-frontend/src/app/login/login.component.css,d/f/df30b4478cbc77a495e22d6d3c0a5d1e2f5ed9f3
-ó
-gworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/RoleRequestDTO.java,7/0/7098bf3f6f65ec2ef896b18ec3db8465c28bb7dd
 k
 ;workout-tracker-frontend/src/app/header/header.component.ts,4/2/42fbe0969bba2c84128e724f93e87a9f21c7f9fd
 k
@@ -101,14 +85,10 @@ n
 >workout-tracker-frontend/src/app/login/login.component.spec.ts,3/2/32294d039630b713064ecd158ea8cac51a7de915
 i
 9workout-tracker-frontend/src/app/login/login.component.ts,c/7/c7834456b26dac3602f81bbccfb9bbca7dfc5381
-ì
-cworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/UserMapper.java,a/5/a5d4fbcbc15fa0d00d261f68adfeb10d18bca72f
 V
 &workout-tracker-frontend/.editorconfig,a/2/a266e0f988a153021d64fe114958f5fba0903745
 Z
 *workout-tracker-frontend/tsconfig.app.json,6/8/68ebf128e2538cb1bd1bb93c03476ef1c0f892e5
-ó
-gworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/UserRequestDTO.java,3/3/33d4f2240ed19693bf7b7995eec8c39cf512066d
 R
 "workout-tracker-frontend/README.md,3/e/3e0238fd96f66a9d0020501d4d5a568b691b7106
 Z
@@ -131,20 +111,12 @@ L
 .git/hooks/pre-commit.sample,8/c/8cd9156cdfaf45713dd3cc78575a18f1b997b3bf
 M
 .git/hooks/pre-receive.sample,a/4/a4b0727be81c85c5692aab93b0a27e8ce8f0c0c9
-î
-dworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/UserService.java,1/f/1fd1316c08309ad00d1423d61a57e81c67000d47
-†
-pworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/AuthorizationController.java,e/1/e1b0500454dacafa1115b73f744e0a4a8840eefe
 M
 .git/hooks/post-update.sample,3/2/32b88c92c4fcebbe0c6989e523d24776d7f1e9a3
 T
 $.git/hooks/sendemail-validate.sample,e/1/e143c7ce04ae9599f64f2a92a97800edef2eead8
-û
-nworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/SecurityConfiguration.java,e/0/e02273fdec45d87256778d773978eb50e156644d
 T
 $.git/hooks/fsmonitor-watchman.sample,4/7/475c6a2d4f119b8ff52cae2f514fb189bd7a5e99
-ì
-cworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/RoleEntity.java,2/5/252a4ee1d7d05b212813bfd2566979b5a132668a
 R
 ".git/logs/refs/remotes/origin/main,6/1/6146b51bc3d159a9c1dd4443599b16416d1d99ef
 J
@@ -159,20 +131,12 @@ V
 &workout-tracker-frontend/tsconfig.json,7/9/79ee9c260ab502a005f3dd6e0d6c15bca823fe5b
 >
 .git/logs/HEAD,c/1/c105085f1a3e0d61f4249101b33af079e718bc92
-ò
-hworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/LoginRequestDTO.java,3/8/383832e5cb14373e86540c4bb5ce827019080b7f
 I
 .git/logs/refs/heads/main,3/3/337bf74c39980c1cce2a46142c4cba5e1b11825a
-ù
-mworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/RoleEntityRepository.java,e/d/ed8304e66aeb4f8370a844da20dacea0d6994cd2
 M
 .git/refs/remotes/origin/HEAD,0/c/0cadb2793b430e5a53fc97bb99a794248bd39935
-ì
-cworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/UserEntity.java,d/2/d28b1c3ac7e6f572683fe9d142a70670168bfc92
 @
 .git/description,c/0/c0fe9c43f6ebda70f04a433e126dadb9a5c0b3a7
-ù
-mworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/UserEntityRepository.java,2/8/282ebcdcc19823f8f513bb856d5805db7ea6b567
 D
 .git/refs/heads/main,4/9/49a79af9571b6a2039ff03c851d620bf36e9e772
 P
@@ -185,20 +149,12 @@ H
 .git/hooks/update.sample,2/4/24f77e0420f4a5a0919b8f81b251a90b056e67e6
 T
 $.git/hooks/prepare-commit-msg.sample,3/5/358c5d64f7e368c5beac0814fd872e728359b49b
-í
-bworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/JWTFilter.java,f/a/fab60e701f25225e56cca624be01216cd795581b
 A
 .git/info/exclude,a/b/abebdcf446a03a51e9150f2d492354eba7b33109
-ò
-hworkout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/SecurityService.java,0/c/0c2d64aeac27ea8094dcf40a145619d52b62b9ba
 P
  .git/hooks/pre-applypatch.sample,1/2/128464407a3d318349f9355bf075967519d7642a
 R
 ".git/hooks/push-to-checkout.sample,5/e/5eb063a4a127159590db1273a3b8475897136877
-ê
-`workout-tracker-backend/src/main/java/com/hbdev/workouttrackerbackend/util/security/JWTUtil.java,0/3/033c58ef237813137dca2220f7798f4b0f63646d
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 K
 workout-tracker-diagram.svg,c/7/c7b4acccef6dc3c750a3a6a8ab070aa3d1b31528
 9

@@ -1,5 +1,6 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
+import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,6 +14,8 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private ProfileEntity profile;
 
     @Column
     private String username;
@@ -39,7 +42,7 @@ public class UserEntity extends BaseEntity {
     private Set<RoleEntity> roles = new HashSet<>();
 
     public UserEntity() {
-
+        profile = new ProfileEntity();
         isEnable = false;
         roles.add(new RoleEntity("user"));
     }
