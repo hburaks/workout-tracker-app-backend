@@ -12,7 +12,6 @@ public class ExerciseResponseDTO extends BaseResponseDTO {
     private String description;
     private String videoUrl;
     private String imageUrl;
-
     private BodyPartTypeEnum bodyPartType;
     private WorkoutExerciseResponseDTO maxVolumeWorkoutExercise;
     private SetResponseDTO maxWeightSet;

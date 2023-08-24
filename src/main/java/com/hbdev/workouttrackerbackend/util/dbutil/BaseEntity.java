@@ -9,7 +9,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 import java.util.UUID;
@@ -40,14 +42,12 @@ public class BaseEntity {
         this.uuid = UUID.randomUUID();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        String username = "";
-        if (authentication == null || !authentication.isAuthenticated()) {
-            username = "anonymous";
-        } else {
-            username = authentication.getPrincipal().toString();
-        }
+        String creator = "";
 
-        setCreatedBy(username);
+        if (authentication != null && authentication.isAuthenticated()) {
+            creator = authentication.getPrincipal().toString();
+            }
+        setCreatedBy(creator);
 
     }
 }

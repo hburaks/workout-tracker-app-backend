@@ -13,7 +13,4 @@ public class ExerciseRequestDTO extends BaseRequestDTO {
     private String videoUrl;
     private String imageUrl;
     private BodyPartTypeEnum bodyPartType;
-
-    private WorkoutExerciseResponseDTO maxVolumeWorkoutExercise;
-    private SetResponseDTO maxWeightSet;
 }

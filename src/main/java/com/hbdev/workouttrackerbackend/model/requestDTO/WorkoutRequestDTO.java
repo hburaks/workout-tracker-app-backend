@@ -8,8 +8,6 @@ import java.util.List;
 @Data
 public class WorkoutRequestDTO extends BaseRequestDTO {
     private String name;
-    private String imageUrl;
-    private String videoUrl;
     private String notes;
     private int duration;
     private double totalWeight;

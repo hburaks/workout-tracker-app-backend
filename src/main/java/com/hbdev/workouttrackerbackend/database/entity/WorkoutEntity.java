@@ -11,8 +11,6 @@ import java.util.List;
 @Data
 public class WorkoutEntity extends BaseEntity {
     private String name;
-    private String imageUrl;
-    private String videoUrl;
     private String notes;
     private int duration;
 

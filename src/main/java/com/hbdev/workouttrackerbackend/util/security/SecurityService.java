@@ -20,10 +20,18 @@ public class SecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<UserEntity> user = userEntityRepository.findByEmail(email);
+        Optional<UserEntity> user = userEntityRepository.findByEmailWithRoles(email);
 
         if (user.isEmpty()) {
-            throw new UsernameNotFoundException("Could not findUser with email =" + email);
+            throw new UsernameNotFoundException("Could not find User with email =" + email);
+        }
+
+        boolean isAdmin = user.get().getRoles().stream().anyMatch(role -> role.getName().equals("admin"));
+
+        if (isAdmin) {
+            return new User(email,
+                    user.get().getPassword(),
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_admin")));
         }
 
         return new User(email,

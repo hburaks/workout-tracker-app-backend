@@ -25,29 +25,32 @@ public class AuthorizationController {
 
     @PostMapping("login")
     public Map<String, Object> loginHandler(@RequestBody LoginRequestDTO body) {
-        UsernamePasswordAuthenticationToken authInputToken =
-                new UsernamePasswordAuthenticationToken(body.getEmail(), body.getPassword());
-
+        UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(body.getEmail(), body.getPassword());
         authManager.authenticate(authInputToken);
-
         String token = jwtUtil.generateToken(body.getEmail());
-
         Map<String, Object> authorizationMap = new HashMap<>();
         authorizationMap.put("jwt-token", token);
-
         return authorizationMap;
     }
 
 
     @PostMapping("register")
-    public ResponseEntity<Boolean> loginHandler(@RequestBody UserRequestDTO body) {
-
-        userService.saveUserByRole(body);
-
-        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
-
-
+    public ResponseEntity<Boolean> saveUser(@RequestBody UserRequestDTO body) {
+        boolean isSaved = userService.saveUserByRole(body);
+        if (isSaved) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-
+    @PostMapping("admin/register")
+    public ResponseEntity<Boolean> saveAdmin(@RequestBody UserRequestDTO body) {
+        boolean isSaved = userService.saveAdmin(body);
+        if (isSaved) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
