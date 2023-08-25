@@ -8,5 +8,4 @@ import java.util.List;
 @Data
 public class ProfileWithoutWorkoutTemplateDTO extends BaseResponseDTO {
     private List<WorkoutResponseDTO> workoutList;
-    private UserEntity user;
 }

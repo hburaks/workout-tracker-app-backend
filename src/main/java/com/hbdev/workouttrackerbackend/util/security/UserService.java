@@ -16,7 +16,6 @@ public class UserService {
 
     private final UserEntityRepository userRepository;
     private final RoleEntityRepository roleRepository;
-    private final ProfileRepository profileRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
@@ -34,12 +33,9 @@ public class UserService {
                 roleEntity.setName("user");
                 roleEntity = roleRepository.save(roleEntity);
             }
-            ProfileEntity profile = new ProfileEntity();
-            profileRepository.save(profile);
-            user.setProfile(profile);
+            user.setProfile(new ProfileEntity());
             roles.add(roleEntity);
             user.setRoles(roles);
-            profile.setUser(user);
             userRepository.save(user);
             return true;
         }
@@ -61,6 +57,7 @@ public class UserService {
             }
             roles.add(roleEntity);
             user.setRoles(roles);
+            user.setProfile(new ProfileEntity());
             userRepository.save(user);
             return true;
         }
