@@ -1,10 +1,9 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
-import com.hbdev.workouttrackerbackend.model.requestDTO.ProfileRequestDTO;
-import com.hbdev.workouttrackerbackend.service.ProfileService;
+import com.hbdev.workouttrackerbackend.database.repository.ProfileRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +11,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    UserEntityRepository userRepository;
-    @Autowired
-    RoleEntityRepository roleRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
-    @Autowired
-    UserMapper userMapper;
+    private final UserEntityRepository userRepository;
+    private final RoleEntityRepository roleRepository;
+    private final ProfileRepository profileRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
 
     @Transactional
-
     public boolean saveUserByRole(UserRequestDTO userRequestDTO) {
         if (!isEmailExist(userRequestDTO.getEmail())) {
             UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
@@ -38,8 +34,12 @@ public class UserService {
                 roleEntity.setName("user");
                 roleEntity = roleRepository.save(roleEntity);
             }
+            ProfileEntity profile = new ProfileEntity();
+            profileRepository.save(profile);
+            user.setProfile(profile);
             roles.add(roleEntity);
             user.setRoles(roles);
+            profile.setUser(user);
             userRepository.save(user);
             return true;
         }
