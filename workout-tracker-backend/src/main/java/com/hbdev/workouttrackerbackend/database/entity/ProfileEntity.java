@@ -16,7 +16,7 @@ public class ProfileEntity extends BaseEntity {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<WorkoutTemplateEntity> workoutTemplateList;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserEntity user;
 
 }

@@ -41,8 +41,8 @@ public class UserEntity extends BaseEntity {
     @JoinColumn(name = "role_id", nullable = false)
     private Set<RoleEntity> roles = new HashSet<>();
 
+
     public UserEntity() {
-        profile = new ProfileEntity();
         isEnable = false;
         roles.add(new RoleEntity("user"));
     }

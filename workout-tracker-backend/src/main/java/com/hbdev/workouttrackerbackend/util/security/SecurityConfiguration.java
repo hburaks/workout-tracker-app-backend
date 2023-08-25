@@ -41,7 +41,7 @@ public class SecurityConfiguration {
     };
     private static final String[] USER_AUTH_WHITELIST = {
 
-            "/workout-template",
+            "/workout-template/**",
             "/register/**",
     };
 
