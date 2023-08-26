@@ -12,7 +12,6 @@ public class ExerciseEntity extends BaseEntity {
     private String name;
     private String description;
 
-
     @Enumerated(EnumType.STRING)
     private BodyPartTypeEnum bodyPartType;
 

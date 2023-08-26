@@ -6,6 +6,5 @@ import lombok.Data;
 
 @Data
 public class ProfileRequestDTO extends BaseRequestDTO {
-   /* private List<WorkoutRequestDTO> workoutList;
-    private List<WorkoutTemplateRequestDTO> workoutTemplateList;*/
+    private Long userId;
 }

@@ -2,28 +2,46 @@ package com.hbdev.workouttrackerbackend.util.security;
 
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.database.repository.ProfileRepository;
+import com.hbdev.workouttrackerbackend.util.BaseService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, UserEntity, UserMapper, UserEntityRepository, UserSpecification> {
 
     private final UserEntityRepository userRepository;
     private final RoleEntityRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UserMapper userMapper;
+    private final UserSpecification userSpecification;
 
+
+    @Override
+    protected UserMapper getMapper() {
+        return UserMapper.INSTANCE;
+    }
+
+    @Override
+    protected UserEntityRepository getRepository() {
+        return userRepository;
+    }
+
+    @Override
+    protected UserSpecification getSpecification() {
+        return userSpecification;
+    }
 
     @Transactional
     public boolean saveUserByRole(UserRequestDTO userRequestDTO) {
         if (!isEmailExist(userRequestDTO.getEmail())) {
-            UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
+            UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
             user.setEnable(false);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             Set<RoleEntity> roles = new HashSet<>();
@@ -45,7 +63,7 @@ public class UserService {
     @Transactional
     public boolean saveAdmin(UserRequestDTO userRequestDTO) {
         if (!isEmailExist(userRequestDTO.getEmail())) {
-            UserEntity user = userMapper.requestDtoToEntity(userRequestDTO);
+            UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
             user.setEnable(false);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             Set<RoleEntity> roles = new HashSet<>();

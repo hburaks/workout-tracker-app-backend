@@ -7,11 +7,9 @@ import java.util.List;
 
 @Data
 public class WorkoutRequestDTO extends BaseRequestDTO {
-    private String name;
     private String notes;
     private int duration;
     private double totalWeight;
 
-    private List<WorkoutExerciseRequestDTO> workoutExercise;
-    private ProfileRequestDTO profile;
+    private Long profileId;
 }

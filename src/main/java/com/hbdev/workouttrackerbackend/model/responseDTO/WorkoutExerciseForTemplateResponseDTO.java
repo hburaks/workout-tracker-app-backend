@@ -6,12 +6,12 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class WorkoutExerciseWithoutWorkoutTemplateResponseDTO extends BaseResponseDTO {
+public class WorkoutExerciseForTemplateResponseDTO extends BaseResponseDTO {
     private String notes;
     private int setOrder;
     private int restTime;
-
-    private ExerciseWithoutWorkoutExerciseResponseDTO exercise;
+    private ExerciseResponseDTO exercise;
+    private WorkoutTemplateResponseDTO workoutTemplate;
     private WorkoutResponseDTO workout;
-    private List<SetWithoutWorkoutExerciseResponseDTO> setList;
+    private List<SetResponseDTO> setList;
 }

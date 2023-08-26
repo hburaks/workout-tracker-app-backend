@@ -1,23 +1,17 @@
-package com.hbdev.workouttrackerbackend.database.entity;
+package com.hbdev.workouttrackerbackend.model.responseDTO;
 
+import com.hbdev.workouttrackerbackend.database.entity.AppEntity;
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
-import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
+import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Table
-@Entity
 @Data
-public class DefaultExerciseEntity extends BaseEntity {
+public class DefaultExerciseResponseDTO extends BaseResponseDTO {
     private String name;
     private String description;
     private String videoUrl;
     private String imageUrl;
-
-    @Enumerated(EnumType.STRING)
     private BodyPartTypeEnum bodyPartType;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_id")
     private AppEntity app;
 }

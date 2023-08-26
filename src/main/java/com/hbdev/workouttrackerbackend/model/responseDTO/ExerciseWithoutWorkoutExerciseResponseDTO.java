@@ -5,12 +5,11 @@ import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Data;
 
 @Data
-public class ExerciseResponseDTO extends BaseResponseDTO {
+public class ExerciseWithoutWorkoutExerciseResponseDTO extends BaseResponseDTO {
     private String name;
     private String description;
     private String videoUrl;
     private String imageUrl;
     private BodyPartTypeEnum bodyPartType;
-    private WorkoutExerciseWithoutExerciseAndTemplateResponseDTO maxVolumeWorkoutExercise;
     private SetWithoutWorkoutExerciseResponseDTO maxWeightSet;
 }
