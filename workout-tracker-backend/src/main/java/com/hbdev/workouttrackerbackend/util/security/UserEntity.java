@@ -1,5 +1,6 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
+import com.hbdev.workouttrackerbackend.database.entity.AppEntity;
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
@@ -40,6 +41,10 @@ public class UserEntity extends BaseEntity {
     @ToString.Exclude
     @JoinColumn(name = "role_id", nullable = false)
     private Set<RoleEntity> roles = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "app_id")
+    private AppEntity app;
 
 
     public UserEntity() {

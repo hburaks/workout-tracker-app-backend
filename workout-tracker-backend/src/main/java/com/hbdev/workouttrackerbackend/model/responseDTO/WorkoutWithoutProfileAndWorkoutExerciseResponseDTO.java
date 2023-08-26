@@ -6,9 +6,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class WorkoutWithoutProfileResponseDTO extends BaseResponseDTO {
+public class WorkoutWithoutProfileAndWorkoutExerciseResponseDTO extends BaseResponseDTO {
     private String notes;
     private int duration;
     private double totalWeight;
-    private List<WorkoutExerciseWithoutWorkoutAndTemplateResponseDTO> workoutExerciseList;
 }

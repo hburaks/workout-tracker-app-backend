@@ -1,21 +1,15 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import com.hbdev.workouttrackerbackend.util.BaseMapper;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-@Component
-@RequiredArgsConstructor
-public class UserMapper {
+@Mapper
+public interface UserMapper extends BaseMapper<UserEntity, UserResponseDTO, UserRequestDTO> {
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-
-    public UserEntity requestDtoToEntity(UserRequestDTO userRequestDTO) {
-        UserEntity user = new UserEntity();
-        user.setPassword(userRequestDTO.getPassword());
-        user.setLastName(userRequestDTO.getLastName());
-        user.setEmail(userRequestDTO.getEmail());
-        user.setFirstName(userRequestDTO.getFirstName());
-        user.setUsername(userRequestDTO.getUsername());
-        user.setPhotoLink(userRequestDTO.getPhotoLink());
-        return user;
-    }
+    @Override
+    @Mapping(source = "appId", target = "app.id")
+    UserEntity requestDtoToEntity(UserRequestDTO requestDTO);
 }

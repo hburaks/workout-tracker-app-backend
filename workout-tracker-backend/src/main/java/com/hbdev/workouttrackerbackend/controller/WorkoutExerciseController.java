@@ -28,4 +28,6 @@ public class WorkoutExerciseController extends BaseController<WorkoutExerciseReq
     protected WorkoutExerciseService getService() {
         return workoutExerciseService;
     }
+
+    //TODO ilişki kontrolünden devam
 }

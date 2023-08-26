@@ -7,6 +7,5 @@ import java.util.List;
 @Data
 public class WorkoutTemplateWithoutProfileDTO extends BaseResponseDTO {
     private String name;
-    private List<WorkoutExerciseResponseDTO> workoutExerciseList;
-
+    private List<WorkoutExerciseWithoutTemplateResponseDTO> workoutExerciseList;
 }
