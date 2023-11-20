@@ -1,29 +1,38 @@
 <app-header></app-header>
-<div class="container mt-5">
+<div class="bg-slate-600 container mt-5">
   <div class="row justify-content-center">
-    <h3 class="col-md-6 text-secondary text-center">Welcome to Workout Tracker App</h3>
+    <h3 class="col-md-6 text-secondary text-center">
+      Welcome to Workout Tracker App
+    </h3>
   </div>
 
   <div class="row justify-content-center">
     <div class="col-md-4">
       <div class="card shadow">
         <div class="card-body align-items-center">
-
           <h4 class="card-title text-center">User Login</h4>
-
 
           <div class="row mt-2">
             <div class="md-4 d-flex justify-content-around">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUser">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#newUser"
+              >
                 New User
               </button>
 
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#existedUser">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#existedUser"
+              >
                 Existed User
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -31,52 +40,3 @@
 </div>
 
 <router-outlet></router-outlet>
-
-<!-- Modal -->
-
-<div class="modal fade mt-5" id="newUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="newUserLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group mt-3">
-          <span class="input-group-text" id="addon-wrapping">@</span>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                 aria-describedby="addon-wrapping">
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade mt-5" id="existedUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="existedUserLabel">Enter Username</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group mt-3">
-          <span class="input-group-text" id="addon-wrapping">@</span>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                 aria-describedby="addon-wrapping">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Login</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
