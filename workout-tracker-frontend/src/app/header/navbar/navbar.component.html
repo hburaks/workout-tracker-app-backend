@@ -1,0 +1,6 @@
+<nav
+  class="bg-slate-900 p-3 gap-1 pt-0  shadow-3xl shadow-zinc-400 flex items-center flex-col text-2xl"
+>
+  <i [routerLink]="item.link" *ngFor="let item of navbarItems"
+     class="cursor-pointer text-gray-300 not-italic rounded-full hover:text-slate-800 hover:bg-white px-3 py-1">{{item.text}}</i>
+</nav>

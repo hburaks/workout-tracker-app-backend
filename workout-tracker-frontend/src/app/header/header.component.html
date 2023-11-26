@@ -1,41 +1,20 @@
-<header class="bg-slate-900 p-4">
-  <div class="flex items-center justify-around">
-    <div class="flex items-center justify-around gap-1">
-      <i class="bx bx-dumbbell text-gray-100 text-3xl "></i
+<header class="bg-slate-900 p-3 sm:p-6 shadow-3xl shadow-zinc-400">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center justify-around gap-1 p-0">
+      <i class="bx bx-dumbbell text-gray-100 text-3xl sm:text-5xl "></i
       ><a
-        href="https://github.com/hburaks/workout-tracker-fullstack"
-        class="text-gray-100 text-lg"
-        >hbDevWorkoutTracker</a
-      >
+      href="https://github.com/hburaks/workout-tracker-fullstack"
+      class="text-gray-100 text-xl sm:text-2xl rounded-full hover:text-slate-800 hover:bg-white px-4"
+    ><span>hbDevWorkoutTracker</span></a
+    >
     </div>
     <nav
-      class="min-h-16 border rounded-full flex items-center justify-between text-xs"
+      class="border border-slate-700 rounded-full flex justify-between text-lg hidden md:block h-max"
     >
-      <a
-        href="#"
-        class="text-gray-300 font-semibold rounded-full hover:text-slate-800 hover:bg-white px-4 py-2"
-        >Home</a
-      >
-      <a
-        href="#"
-        class="text-gray-300 font-semibold rounded-full hover:text-slate-800 hover:bg-white px-4 py-2"
-        >Service</a
-      >
-      <a
-        href="#"
-        class="text-gray-300 font-semibold rounded-full hover:text-slate-800 hover:bg-white px-4 py-2"
-        >Pricing</a
-      >
-      <a
-        href="#"
-        class="text-gray-300 font-semibold rounded-full hover:text-slate-800 hover:bg-white px-4 py-2"
-        >Why Us</a
-      >
-      <a
-        href="#"
-        class="text-gray-300 font-semibold rounded-full hover:text-slate-800 hover:bg-white px-4 py-2"
-        >Our Work</a
-      >
+      <i [routerLink]="item.link" *ngFor="let item of navbarItems"
+         class="cursor-pointer text-gray-300 not-italic rounded-full hover:text-slate-800 hover:bg-white px-2 py-1">{{item.text}}</i>
     </nav>
+    <i (click)="toggleNavBar()" class='bx bx-menu text-gray-100 text-3xl sm:text-5xl block md:hidden rounded-full hover:text-slate-800 hover:bg-white p-1'></i>
   </div>
 </header>
+<app-navbar [navbarItems]="navbarItems" *ngIf="isNavbarVisible"></app-navbar>

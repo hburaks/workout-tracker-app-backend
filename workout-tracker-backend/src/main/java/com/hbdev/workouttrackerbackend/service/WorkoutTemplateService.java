@@ -44,7 +44,7 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
         WorkoutTemplateEntity workoutTemplate = getEntityByUuid(uuid);
         if (workoutTemplate != null && exercise != null) {
             WorkoutExerciseEntity workoutExercise = exerciseToWorkoutExercise(exercise);
-            workoutExercise.setWorkoutTemplate(workoutTemplate);
+         // TODO:   workoutExercise.setWorkoutTemplate(workoutTemplate);
             if (workoutTemplate.getWorkoutExerciseList() == null) {
                 workoutTemplate.setWorkoutExerciseList(new ArrayList<>());
             }
