@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
-import com.hbdev.workouttrackerbackend.database.entity.AppEntity;
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Data;

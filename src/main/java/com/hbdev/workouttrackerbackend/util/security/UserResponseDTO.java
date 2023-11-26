@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.database.entity.AppEntity;
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.model.responseDTO.AppResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;

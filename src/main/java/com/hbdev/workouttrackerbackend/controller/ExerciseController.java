@@ -1,6 +1,6 @@
 package com.hbdev.workouttrackerbackend.controller;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.ExercisePersonalRecordEntity;
 import com.hbdev.workouttrackerbackend.database.repository.ExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.specification.ExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.ExerciseMapper;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ExerciseController extends BaseController<ExerciseRequestDTO,
         ExerciseResponseDTO,
-        ExerciseEntity,
+        ExercisePersonalRecordEntity,
         ExerciseMapper,
         ExerciseRepository,
         ExerciseSpecification,

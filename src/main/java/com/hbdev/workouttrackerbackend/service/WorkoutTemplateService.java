@@ -1,6 +1,6 @@
 package com.hbdev.workouttrackerbackend.service;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.ExercisePersonalRecordEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
@@ -40,7 +40,7 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
 
     @Transactional
     public WorkoutTemplateResponseDTO add(UUID uuid, UUID uuidToAdd) {
-        ExerciseEntity exercise = exerciseService.getEntityByUuid(uuidToAdd);
+        ExercisePersonalRecordEntity exercise = exerciseService.getEntityByUuid(uuidToAdd);
         WorkoutTemplateEntity workoutTemplate = getEntityByUuid(uuid);
         if (workoutTemplate != null && exercise != null) {
             WorkoutExerciseEntity workoutExercise = exerciseToWorkoutExercise(exercise);
@@ -55,7 +55,7 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
         return null;
     }
 
-    private WorkoutExerciseEntity exerciseToWorkoutExercise(ExerciseEntity exercise) {
+    private WorkoutExerciseEntity exerciseToWorkoutExercise(ExercisePersonalRecordEntity exercise) {
         WorkoutExerciseEntity workoutExercise = new WorkoutExerciseEntity();
         workoutExercise.setExercise(exercise);
         return workoutExercise;

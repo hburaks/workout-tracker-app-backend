@@ -1,6 +1,6 @@
 package com.hbdev.workouttrackerbackend.service;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.ExercisePersonalRecordEntity;
 import com.hbdev.workouttrackerbackend.database.repository.ExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.specification.ExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.ExerciseMapper;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ExerciseService extends BaseService<ExerciseResponseDTO, ExerciseRequestDTO, ExerciseEntity, ExerciseMapper, ExerciseRepository, ExerciseSpecification> {
+public class ExerciseService extends BaseService<ExerciseResponseDTO, ExerciseRequestDTO, ExercisePersonalRecordEntity, ExerciseMapper, ExerciseRepository, ExerciseSpecification> {
     private final ExerciseRepository exerciseRepository;
     private final ExerciseSpecification exerciseSpecification;
 
