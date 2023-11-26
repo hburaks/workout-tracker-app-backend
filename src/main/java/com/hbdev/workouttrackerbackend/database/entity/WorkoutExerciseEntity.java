@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Data
 public class WorkoutExerciseEntity extends BaseEntity {
-
     private String notes;
     private int setOrder;
     private int restTime;
