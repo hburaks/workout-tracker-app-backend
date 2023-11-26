@@ -8,11 +8,8 @@ import lombok.Data;
 @Table
 @Entity
 @Data
-public class DefaultExerciseEntity extends BaseEntity {
-    private String name;
-    private String description;
-    private String videoUrl;
-    private String imageUrl;
-    @Enumerated(EnumType.STRING)
-    private BodyPartTypeEnum bodyPartType;
+public class ExercisePersonalRecordEntity extends BaseEntity {
+    private SetEntity maxVolumeSet;
+    private SetEntity maxOneRepMaxSet;
+    private SetEntity maxWeightSet;
 }

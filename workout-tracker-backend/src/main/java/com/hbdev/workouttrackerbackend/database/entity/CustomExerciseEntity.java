@@ -8,16 +8,10 @@ import lombok.Data;
 @Table
 @Entity
 @Data
-public class ExerciseEntity extends BaseEntity {
+public class CustomExerciseEntity extends BaseEntity {
+    @OneToOne
+    private ProfileEntity profile;
     private String name;
-    private String description;
-
     @Enumerated(EnumType.STRING)
     private BodyPartTypeEnum bodyPartType;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private WorkoutExerciseEntity maxVolumeWorkoutExercise;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private SetEntity maxWeightSet;
 }

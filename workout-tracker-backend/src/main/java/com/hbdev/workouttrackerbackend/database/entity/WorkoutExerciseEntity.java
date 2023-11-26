@@ -16,7 +16,7 @@ public class WorkoutExerciseEntity extends BaseEntity {
     private int restTime;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id")
-    private ExerciseEntity exercise;
+    private ExercisePersonalRecordEntity exercise;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_id")
