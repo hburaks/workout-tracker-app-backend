@@ -4,17 +4,17 @@
       <i class="bx bx-dumbbell text-gray-100 text-3xl sm:text-5xl "></i
       ><a
       href="https://github.com/hburaks/workout-tracker-fullstack"
-      class="text-gray-100 text-xl sm:text-2xl rounded-full hover:text-slate-800 hover:bg-white px-4"
+      class="text-gray-100 text-xl sm:text-xl rounded-2xl hover:text-slate-800 hover:bg-white px-4 py-2"
     ><span>hbDevWorkoutTracker</span></a
     >
     </div>
     <nav
-      class="border border-slate-700 rounded-full flex justify-between text-lg hidden md:block h-max"
+      class="border border-slate-700 rounded-2xl flex justify-between text-md hidden md:block h-max py-2"
     >
       <i [routerLink]="item.link" *ngFor="let item of navbarItems"
-         class="cursor-pointer text-gray-300 not-italic rounded-full hover:text-slate-800 hover:bg-white px-2 py-1">{{item.text}}</i>
+         class="cursor-pointer text-gray-300 not-italic rounded-2xl hover:text-slate-800 hover:bg-white px-5 py-2">{{item.text}}</i>
     </nav>
-    <i (click)="toggleNavBar()" class='bx bx-menu text-gray-100 text-3xl sm:text-5xl block md:hidden rounded-full hover:text-slate-800 hover:bg-white p-1'></i>
+    <i (click)="toggleNavBar()" class='bx bx-menu text-gray-100 text-4xl block rounded-2xl md:hidden hover:text-slate-800 hover:bg-white p-1'></i>
   </div>
 </header>
 <app-navbar [navbarItems]="navbarItems" *ngIf="isNavbarVisible"></app-navbar>

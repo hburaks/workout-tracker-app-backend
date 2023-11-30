@@ -12,6 +12,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { MainComponent } from './main/main.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { ProfileComponent } from './user-dashboard/profile/profile.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -21,15 +24,18 @@ import { MainComponent } from './main/main.component';
     BodyComponent,
     CreateAccountComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    UserDashboardComponent,
+    ProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterOutlet,
-    RouterLink,
-    AppRoutingModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterOutlet,
+        RouterLink,
+        AppRoutingModule,
+        FormsModule,
+        NgOptimizedImage,
+    ],
   providers: [LoginService],
   bootstrap: [AppComponent]
 })

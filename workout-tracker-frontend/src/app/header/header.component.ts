@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit{
   }
 
   navbarItems: { text: string, link: string }[] = [
-    {text: "Home", link: "#"},
-    {text: "Service", link: "#"},
-    {text: "Pricing", link: "#"},
-    {text: "Our Work", link: "#"},
-    {text: "Why Us", link: "#"}
+    {text: "Premium", link: "#"},
+    {text: "Explore", link: "#"},
+    {text: "Product", link: "#"},
+    {text: "Coach", link: "#"},
+    {text: "Login", link: "login"}
   ]
   isNavbarVisible: boolean = false;
 
