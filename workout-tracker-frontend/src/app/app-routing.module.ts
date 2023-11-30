@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
-import {HeaderComponent} from "./header/header.component";
-import {LoginComponent} from "./login/login.component";
-import {CreateAccountComponent} from "./create-account/create-account.component";
+import {HeaderComponent} from "./main/header/header.component";
+import {LoginComponent} from "./main/header/login/login.component";
+import {CreateAccountComponent} from "./main/body/create-account/create-account.component";
 import {AppComponent} from "./app.component";
 import {MainComponent} from "./main/main.component";
 import {UserDashboardComponent} from "./user-dashboard/user-dashboard.component";

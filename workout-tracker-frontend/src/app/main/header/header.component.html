@@ -1,0 +1,13 @@
+<header class="max-w-screen-xl flex justify-between p-3 sm:p-6 m-auto">
+  <app-icon></app-icon>
+  <nav
+    class="border border-slate-700 rounded-2xl flex justify-between text-md hidden md:block h-max py-2">
+    <i [routerLink]="item.link" *ngFor="let item of navbarItems"
+       class="cursor-pointer text-gray-300 not-italic rounded-2xl hover:text-slate-800 hover:bg-white px-5 py-2">
+      {{item.text}}
+    </i>
+  </nav>
+  <i (click)="toggleNavBar()"
+     class='bx bx-menu text-gray-100 text-4xl block rounded-2xl md:hidden hover:text-slate-800 hover:bg-white p-1'></i>
+</header>
+<app-navbar [navbarItems]="navbarItems" *ngIf="isNavbarVisible"></app-navbar>

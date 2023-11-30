@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './main/header/header.component';
 import {LoginService} from "./service/login.service";
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './header/navbar/navbar.component';
-import { BodyComponent } from './body/body.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
-import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './main/header/navbar/navbar.component';
+import { BodyComponent } from './main/body/body.component';
+import { CreateAccountComponent } from './main/body/create-account/create-account.component';
+import { LoginComponent } from './main/header/login/login.component';
 import {FormsModule} from "@angular/forms";
 import { MainComponent } from './main/main.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './user-dashboard/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
+import { FooterComponent } from './main/footer/footer.component';
+import { IconComponent } from './main/header/icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {NgOptimizedImage} from "@angular/common";
     LoginComponent,
     MainComponent,
     UserDashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    FooterComponent,
+    IconComponent
   ],
     imports: [
         BrowserModule,
