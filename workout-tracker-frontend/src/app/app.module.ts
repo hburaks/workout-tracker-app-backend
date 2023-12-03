@@ -13,12 +13,16 @@ import { LoginComponent } from './main/header/login/login.component';
 import {FormsModule} from "@angular/forms";
 import { MainComponent } from './main/main.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { ProfileComponent } from './user-dashboard/profile/profile.component';
+import { ProfileComponent } from './user-dashboard/dash-header/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
 import { FooterComponent } from './main/footer/footer.component';
 import { IconComponent } from './main/header/icon/icon.component';
 import { FeaturesComponent } from './main/body/features/features.component';
 import { PricingComponent } from './main/body/pricing/pricing.component';
+import { DashHeaderComponent } from './user-dashboard/dash-header/dash-header.component';
+import { DashSideBarComponent } from './user-dashboard/dash-side-bar/dash-side-bar.component';
+import { DashMainComponent } from './user-dashboard/dash-main/dash-main.component';
+import { DashFooterComponent } from './user-dashboard/dash-footer/dash-footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { PricingComponent } from './main/body/pricing/pricing.component';
     FooterComponent,
     IconComponent,
     FeaturesComponent,
-    PricingComponent
+    PricingComponent,
+    DashHeaderComponent,
+    DashSideBarComponent,
+    DashMainComponent,
+    DashFooterComponent
   ],
     imports: [
         BrowserModule,

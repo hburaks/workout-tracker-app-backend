@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileComponent } from './profile.component';
+import { DashMainComponent } from './dash-main.component';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+describe('DashMainComponent', () => {
+  let component: DashMainComponent;
+  let fixture: ComponentFixture<DashMainComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileComponent]
+      declarations: [DashMainComponent]
     });
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(DashMainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

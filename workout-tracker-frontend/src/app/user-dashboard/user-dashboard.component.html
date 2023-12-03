@@ -1,6 +1,8 @@
-<div class="grid grid-cols-6 min-h-full min-w-full">
-  <div class="col-span-full col-start-2 min-h-full">
-    <app-profile class="bg-gray-400 p-3 sm:p-6 shadow-3xl shadow-zinc-400 max-h-24"></app-profile>
-    <div id="dashboard" class="p-12 ">hi</div>
+<div class="flex justify-between items-stretch flex-col cursor-default min-h-full min-w-full bg-1b text-5a">
+  <app-dash-header></app-dash-header>
+  <div class="flex flex-grow">
+    <app-dash-side-bar class="w-1/6 md:w-64 border-r-2 border-5a"></app-dash-side-bar>
+    <app-dash-main class="w-5/6"></app-dash-main>
   </div>
+  <app-dash-footer class="border-t-2 bg-1c p-3 sm:p-6 sm:px-16"></app-dash-footer>
 </div>
