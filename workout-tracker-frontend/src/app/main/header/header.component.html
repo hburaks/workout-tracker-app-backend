@@ -1,9 +1,9 @@
 <header class="max-w-screen-xl flex justify-between p-3 sm:p-6 m-auto">
   <app-icon></app-icon>
   <nav
-    class="border border-slate-700 rounded-2xl flex justify-between text-md hidden md:block h-max py-2">
+    class="border-2 border-5a rounded-2xl text-md hidden md:block h-max py-2">
     <i [routerLink]="item.link" *ngFor="let item of navbarItems"
-       class="cursor-pointer text-gray-300 not-italic rounded-2xl hover:text-slate-800 hover:bg-white px-5 py-2">
+       class="cursor-pointer hover:text-2a text-gray-300 not-italic rounded-2xl hover:text-slate-800 hover:bg-white px-5 py-2">
       {{item.text}}
     </i>
   </nav>

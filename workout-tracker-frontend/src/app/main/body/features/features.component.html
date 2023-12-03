@@ -1,0 +1,11 @@
+<div>
+  <div class="text-center text-3xl pt-32">
+    - Features -
+  </div>
+  <div class="flex justify-between flex-row gap-12 text-center pt-10">
+    <div class="w-1/3" *ngFor="let feature of features">
+      <div class="rounded-edge h-40 pt-2 bg-1a"><img src="{{feature.imgUrl}}"></div>
+      <div class="pt-2">{{feature.header}}</div>
+    </div>
+  </div>
+</div>

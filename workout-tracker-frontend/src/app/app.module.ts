@@ -17,6 +17,8 @@ import { ProfileComponent } from './user-dashboard/profile/profile.component';
 import {NgOptimizedImage} from "@angular/common";
 import { FooterComponent } from './main/footer/footer.component';
 import { IconComponent } from './main/header/icon/icon.component';
+import { FeaturesComponent } from './main/body/features/features.component';
+import { PricingComponent } from './main/body/pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { IconComponent } from './main/header/icon/icon.component';
     UserDashboardComponent,
     ProfileComponent,
     FooterComponent,
-    IconComponent
+    IconComponent,
+    FeaturesComponent,
+    PricingComponent
   ],
     imports: [
         BrowserModule,

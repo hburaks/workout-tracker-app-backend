@@ -1,4 +1,23 @@
-<div class="flex justify-center items-center gap-2 p-5">
-  <button [routerLink]="'/create-account'"
-          class="border-slate-700 rounded-2xl py-2 px-4 hover:text-gray-300 bg-slate-500 hover:bg-slate-700">Create an Account</button>
+<div class="max-w-screen-xl p-3 sm:p-6 m-auto">
+  <div class="flex justify-between items-center pt-32">
+    <div class="flex flex-col items-center w-1/2 p-12">
+      <div class="text-5a text-3xl text-center p-6">
+        <span>
+          Workout with a plan<br>
+          Track your progress<br>
+          Get stronger every workout
+        </span>
+      </div>
+      <button [routerLink]="'/create-account'"
+              class="w-52 pt-2 text-lg border-2 border-5a rounded-3xl py-2 px-4 hover:text-2a bg-slate-500 hover:bg-slate-700">
+        Create an Account
+      </button>
+    </div>
+    <div class="w-1/2 rounded-edge">
+      <img class="rounded-3xl"
+           src="https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=3346&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    </div>
+  </div>
+  <app-features class="pt-20"></app-features>
+  <app-pricing class="pt-20"></app-pricing>
 </div>
