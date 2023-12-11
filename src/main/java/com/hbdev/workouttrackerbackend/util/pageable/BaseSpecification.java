@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public abstract class BaseSpecification<Entity extends BaseEntity> implements Specification<Entity> {
 
     private List<SearchCriteria> criteriaList;
@@ -32,18 +33,18 @@ public abstract class BaseSpecification<Entity extends BaseEntity> implements Sp
             Predicate predicate = null;
 
             if (criteria.getOperation().equalsIgnoreCase(">")) {
-                predicate = criteriaBuilder.greaterThan(root.<String>get(criteria.getKey()), criteria.getValue().toString());
+                predicate = criteriaBuilder.greaterThan(root.get(criteria.getKey()), criteria.getValue().toString());
             } else if (criteria.getOperation().equalsIgnoreCase("<")) {
-                predicate = criteriaBuilder.lessThan(root.<String>get(criteria.getKey()), criteria.getValue().toString());
+                predicate = criteriaBuilder.lessThan(root.get(criteria.getKey()), criteria.getValue().toString());
             } else if (criteria.getOperation().equalsIgnoreCase(">=")) {
-                predicate = criteriaBuilder.greaterThanOrEqualTo(root.<String>get(criteria.getKey()), criteria.getValue().toString());
+                predicate = criteriaBuilder.greaterThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
             } else if (criteria.getOperation().equalsIgnoreCase("<=")) {
-                predicate = criteriaBuilder.lessThanOrEqualTo(root.<String>get(criteria.getKey()), criteria.getValue().toString());
+                predicate = criteriaBuilder.lessThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
             } else if (criteria.getOperation().equalsIgnoreCase("=")) {
                 predicate = criteriaBuilder.equal(root.<String>get(criteria.getKey()), criteria.getValue().toString());
             } else if (criteria.getOperation().equalsIgnoreCase(":")) {
                 if (root.get(criteria.getKey()).getJavaType() == String.class) {
-                    predicate = criteriaBuilder.like(criteriaBuilder.lower(root.<String>get(criteria.getKey())), "%" + criteria.getValue().toString().toLowerCase() + "%");
+                    predicate = criteriaBuilder.like(criteriaBuilder.lower(root.get(criteria.getKey())), "%" + criteria.getValue().toString().toLowerCase() + "%");
                 } else {
                     predicate = criteriaBuilder.equal(root.<String>get(criteria.getKey()), criteria.getValue().toString());
                 }

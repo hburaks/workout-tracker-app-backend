@@ -1,16 +1,13 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
-import com.hbdev.workouttrackerbackend.database.repository.ProfileRepository;
 import com.hbdev.workouttrackerbackend.util.BaseService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service

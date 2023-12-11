@@ -4,11 +4,13 @@ import com.hbdev.workouttrackerbackend.model.enums.SetTypeEnum;
 import com.hbdev.workouttrackerbackend.model.enums.WeightUnitTypeEnum;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 public class SetEntity extends BaseEntity {
 
     private double weight;

@@ -1,27 +1,24 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.database.entity.AppEntity;
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private ProfileEntity profile;
-
-    @ManyToOne
-    @JoinColumn(name = "app_id")
-    private AppEntity app;
 
     @Column
     private String username;

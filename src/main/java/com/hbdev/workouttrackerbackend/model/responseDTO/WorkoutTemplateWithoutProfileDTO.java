@@ -1,10 +1,13 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
-@Data
+
+@Getter
+@Setter
 public class WorkoutTemplateWithoutProfileDTO extends BaseResponseDTO {
     private String name;
     private List<WorkoutExerciseWithoutTemplateResponseDTO> workoutExerciseList;

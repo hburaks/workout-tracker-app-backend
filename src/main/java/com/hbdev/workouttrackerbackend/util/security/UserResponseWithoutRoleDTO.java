@@ -1,10 +1,6 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.model.responseDTO.ProfileResponseDTO;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class UserResponseWithoutRoleDTO {
     private String username;

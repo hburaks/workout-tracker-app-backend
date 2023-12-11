@@ -2,9 +2,11 @@ package com.hbdev.workouttrackerbackend.util.security;
 
 import com.hbdev.workouttrackerbackend.model.requestDTO.ProfileRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserRequestDTO extends BaseRequestDTO {
     private String username;
     private String firstName;

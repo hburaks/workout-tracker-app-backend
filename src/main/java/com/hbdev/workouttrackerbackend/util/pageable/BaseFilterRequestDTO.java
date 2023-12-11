@@ -1,11 +1,13 @@
 package com.hbdev.workouttrackerbackend.util.pageable;
 
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class BaseFilterRequestDTO extends BaseRequestDTO {
     private int pageNumber;
     private int pageSize;

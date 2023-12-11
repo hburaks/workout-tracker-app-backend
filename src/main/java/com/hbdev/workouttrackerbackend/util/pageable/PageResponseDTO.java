@@ -1,12 +1,14 @@
 package com.hbdev.workouttrackerbackend.util.pageable;
 
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class PageResponseDTO<DTO extends BaseResponseDTO> {
 
     private int number;

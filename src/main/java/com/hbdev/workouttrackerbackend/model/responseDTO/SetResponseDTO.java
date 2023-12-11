@@ -1,12 +1,14 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class SetResponseDTO extends BaseResponseDTO {
+    WorkoutExerciseResponseDTO workoutExercise;
     private double weight;
     private int reps;
     private int setOrder;
-    WorkoutExerciseResponseDTO workoutExercise;
 }

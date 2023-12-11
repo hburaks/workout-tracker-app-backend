@@ -1,7 +1,8 @@
 package com.hbdev.workouttrackerbackend.util.dbutil;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.springframework.data.annotation.CreatedBy;
@@ -9,14 +10,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
 public class BaseEntity {
@@ -37,6 +37,7 @@ public class BaseEntity {
 
     @CreatedBy
     private String createdBy;
+
     @PrePersist
     protected void prePersist() {
         this.uuid = UUID.randomUUID();
@@ -46,7 +47,7 @@ public class BaseEntity {
 
         if (authentication != null && authentication.isAuthenticated()) {
             creator = authentication.getPrincipal().toString();
-            }
+        }
         setCreatedBy(creator);
 
     }

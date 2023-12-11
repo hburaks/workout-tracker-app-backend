@@ -1,12 +1,15 @@
 package com.hbdev.workouttrackerbackend.util;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 public class BaseResponseDTO {
+
     private Long id;
 
     private UUID uuid;

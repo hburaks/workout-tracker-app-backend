@@ -1,8 +1,10 @@
 package com.hbdev.workouttrackerbackend.util.pageable;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class SearchCriteria {
 
     private String key;

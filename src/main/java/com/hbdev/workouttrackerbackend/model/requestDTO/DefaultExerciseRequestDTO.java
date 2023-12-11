@@ -2,14 +2,23 @@ package com.hbdev.workouttrackerbackend.model.requestDTO;
 
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class DefaultExerciseRequestDTO extends BaseRequestDTO {
+
     private String name;
+
     private String description;
-    private String videoUrl;
+
     private String imageUrl;
+
+    private String note;
+
+    private int rm1;
+
     private BodyPartTypeEnum bodyPartType;
-    private Long appId;
+
 }

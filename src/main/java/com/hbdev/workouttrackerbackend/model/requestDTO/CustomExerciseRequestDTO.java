@@ -1,21 +1,10 @@
 package com.hbdev.workouttrackerbackend.model.requestDTO;
 
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
-
-@Data
+@Getter
+@Setter
 public class CustomExerciseRequestDTO extends BaseRequestDTO {
-    private String notes;
-    private int setOrder;
-    private int restTime;
-    private ExerciseRequestDTO exercise;
-
-    private WorkoutTemplateRequestDTO workoutTemplate;
-
-    private WorkoutRequestDTO workout;
-
-    private List<SetRequestDTO> setList;
-
 }

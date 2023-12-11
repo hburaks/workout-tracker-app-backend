@@ -5,10 +5,7 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-public interface BaseMapper<
-        Entity extends BaseEntity,
-        ResponseDTO extends BaseResponseDTO,
-        RequestDTO extends BaseRequestDTO> {
+public interface BaseMapper<Entity extends BaseEntity, ResponseDTO extends BaseResponseDTO, RequestDTO extends BaseRequestDTO> {
 
     Entity requestDtoToEntity(RequestDTO requestDTO);
 
@@ -17,7 +14,5 @@ public interface BaseMapper<
     List<ResponseDTO> entityListToResponseDtoList(List<Entity> entityList);
 
     Entity updateEntityFromRequestDTO(RequestDTO requestDTO, @MappingTarget Entity entity);
-
-
 
 }

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public abstract class BaseService<
         ResponseDTO extends BaseResponseDTO,
@@ -24,8 +23,8 @@ public abstract class BaseService<
 
 
     protected abstract Repository getRepository();
-    protected abstract Specification getSpecification();
 
+    protected abstract Specification getSpecification();
 
 
     public PageResponseDTO<ResponseDTO> getAll(BaseFilterRequestDTO baseFilterRequestDTO) {

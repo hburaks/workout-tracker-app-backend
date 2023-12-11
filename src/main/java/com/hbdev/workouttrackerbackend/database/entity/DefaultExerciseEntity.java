@@ -3,13 +3,15 @@ package com.hbdev.workouttrackerbackend.database.entity;
 import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Table
 @Entity
-@Data
+@Getter
+@Setter
 public class DefaultExerciseEntity extends BaseEntity {
 
     private String name;
@@ -27,9 +29,5 @@ public class DefaultExerciseEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "defaultExercise", cascade = CascadeType.ALL)
     private List<CustomExerciseEntity> volumePrExercise;
-
-    @ManyToOne
-    @JoinColumn(name = "app_id")
-    private AppEntity app;
 
 }

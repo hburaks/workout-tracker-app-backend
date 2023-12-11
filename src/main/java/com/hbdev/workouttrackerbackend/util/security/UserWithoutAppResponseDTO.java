@@ -1,14 +1,14 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
-import com.hbdev.workouttrackerbackend.model.responseDTO.ProfileResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class UserWithoutAppResponseDTO extends BaseResponseDTO {
     private String username;
     private String email;
@@ -17,6 +17,8 @@ public class UserWithoutAppResponseDTO extends BaseResponseDTO {
     private String password;
     private String photoLink;
     private boolean isEnable;
-    private ProfileResponseDTO profile;
+    /*
+        private ProfileResponseDTO profile;
+    */
     private Set<RoleWithoutUsersResponseDTO> roles = new HashSet<>();
 }
