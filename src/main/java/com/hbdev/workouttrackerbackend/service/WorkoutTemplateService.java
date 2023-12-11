@@ -1,5 +1,7 @@
 package com.hbdev.workouttrackerbackend.service;
 
+import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.DefaultExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
 import com.hbdev.workouttrackerbackend.database.specification.WorkoutTemplateSpecification;
@@ -18,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseDTO, WorkoutTemplateRequestDTO, WorkoutTemplateEntity, WorkoutTemplateMapper, WorkoutTemplateRepository, WorkoutTemplateSpecification> {
     private final WorkoutTemplateRepository workoutTemplateRepository;
-    private final ExerciseService exerciseService;
+    private final DefaultExerciseService defaultExerciseService;
     private final WorkoutTemplateSpecification workoutTemplateSpecification;
 
     @Override
@@ -37,27 +39,25 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
     }
 
     @Transactional
-    public WorkoutTemplateResponseDTO add(UUID uuid, UUID uuidToAdd) {
-        ExercisePersonalRecordEntity exercise = exerciseService.getEntityByUuid(uuidToAdd);
+    public WorkoutTemplateResponseDTO addDefaultExerciseToTemplate(UUID uuid, UUID uuidToAdd) {
+        DefaultExerciseEntity defaultExercise = defaultExerciseService.getEntityByUuid(uuidToAdd);
         WorkoutTemplateEntity workoutTemplate = getEntityByUuid(uuid);
-        if (workoutTemplate != null && exercise != null) {
-            PrimitiveExerciseEntity workoutExercise = exerciseToWorkoutExercise(exercise);
-         // TODO:   workoutExercise.setWorkoutTemplate(workoutTemplate);
-            if (workoutTemplate.getWorkoutExerciseList() == null) {
-                workoutTemplate.setWorkoutExerciseList(new ArrayList<>());
+        if (workoutTemplate != null && defaultExercise != null) {
+            // TODO:   workoutExercise.setWorkoutTemplate(workoutTemplate); Otomatik persist oluyor mu db kontrolü yapılmalı
+            if (workoutTemplate.getDefaultExerciseList() == null) {
+                workoutTemplate.setDefaultExerciseList(new ArrayList<>());
             }
-            workoutTemplate.getWorkoutExerciseList().add(workoutExercise);
+            workoutTemplate.getDefaultExerciseList().add(defaultExercise);
             workoutTemplate = workoutTemplateRepository.save(workoutTemplate);
             return getMapper().entityToResponseDto(workoutTemplate);
         }
         return null;
     }
 
-    private PrimitiveExerciseEntity exerciseToWorkoutExercise(ExercisePersonalRecordEntity exercise) {
-        PrimitiveExerciseEntity workoutExercise = new PrimitiveExerciseEntity();
-        workoutExercise.setExercise(exercise);
+    private CustomExerciseEntity defaultExerciseToCustomExercise(DefaultExerciseEntity defaultExercise) {
+        CustomExerciseEntity workoutExercise = new CustomExerciseEntity();
+        workoutExercise.setDefaultExercise(defaultExercise);
         return workoutExercise;
     }
-
 }
 

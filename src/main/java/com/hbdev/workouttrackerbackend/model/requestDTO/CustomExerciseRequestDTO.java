@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class WorkoutExerciseRequestDTO extends BaseRequestDTO {
+public class CustomExerciseRequestDTO extends BaseRequestDTO {
     private String notes;
     private int setOrder;
     private int restTime;
