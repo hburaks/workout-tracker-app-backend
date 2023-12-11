@@ -15,8 +15,13 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private ProfileEntity profile;
+
+    @ManyToOne
+    @JoinColumn(name = "app_id")
+    private AppEntity app;
 
     @Column
     private String username;
@@ -42,13 +47,9 @@ public class UserEntity extends BaseEntity {
     @JoinColumn(name = "role_id", nullable = false)
     private Set<RoleEntity> roles = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_id")
-    private AppEntity app;
-
-
     public UserEntity() {
         isEnable = false;
         roles.add(new RoleEntity("user"));
     }
+
 }

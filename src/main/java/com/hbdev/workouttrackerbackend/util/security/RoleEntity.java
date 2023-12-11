@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @Table
 public class RoleEntity extends BaseEntity {
+
     @Column(unique = true)
     private String name;
     @Column
@@ -28,4 +29,5 @@ public class RoleEntity extends BaseEntity {
 
     public RoleEntity() {
     }
+
 }

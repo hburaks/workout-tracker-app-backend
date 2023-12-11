@@ -3,24 +3,32 @@ package com.hbdev.workouttrackerbackend.database.entity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.util.Date;
 import java.util.List;
 
 @Table
 @Entity
 @Data
 public class WorkoutEntity extends BaseEntity {
-    private String notes;
+
     private int duration;
-    private double totalWeight;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "workout")
-    private List<WorkoutExerciseEntity> workoutExerciseList;
+    private int volume;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @CreatedDate
+    private Date date;
+
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<CustomExerciseEntity> customExerciseList;
+
+    @ManyToOne
+    @JoinColumn(name = "workout_template_id")
     private WorkoutTemplateEntity workoutTemplate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 

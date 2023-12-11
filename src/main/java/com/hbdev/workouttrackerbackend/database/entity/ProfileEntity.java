@@ -11,12 +11,18 @@ import java.util.List;
 @Entity
 @Table
 public class ProfileEntity extends BaseEntity {
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<WorkoutEntity> workoutList;
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<WorkoutTemplateEntity> workoutTemplateList;
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ExercisePersonalRecordEntity> exerciseList;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<WorkoutEntity> workoutList;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<WorkoutTemplateEntity> workoutTemplateList;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<CustomExerciseEntity> customExerciseList;
+
 }

@@ -1,5 +1,7 @@
 package com.hbdev.workouttrackerbackend.database.entity;
 
+import com.hbdev.workouttrackerbackend.model.enums.SetTypeEnum;
+import com.hbdev.workouttrackerbackend.model.enums.WeightUnitTypeEnum;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,12 +10,19 @@ import lombok.Data;
 @Table
 @Data
 public class SetEntity extends BaseEntity {
+
     private double weight;
+
     private int reps;
-    private int setOrder;
 
+    @Enumerated(EnumType.STRING)
+    private SetTypeEnum setTypeEnum;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workout_exercise_id")
-    WorkoutExerciseEntity workoutExercise;
+    @Enumerated(EnumType.STRING)
+    private WeightUnitTypeEnum weightUnitTypeEnum;
+
+    @ManyToOne
+    @JoinColumn(name = "custom_exercise_id")
+    private CustomExerciseEntity customExercise;
+
 }

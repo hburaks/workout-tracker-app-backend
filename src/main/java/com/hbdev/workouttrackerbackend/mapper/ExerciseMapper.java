@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.mapper;
 
-import com.hbdev.workouttrackerbackend.database.entity.ExercisePersonalRecordEntity;
 import com.hbdev.workouttrackerbackend.model.responseDTO.ExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.ExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseMapper;
