@@ -30,7 +30,7 @@ public class WorkoutTemplateController extends BaseController<WorkoutTemplateReq
         return workoutTemplateService;
     }
 
-    @PostMapping("{templateUuid}/toAdd/{exerciseUuid}")
+    /*@PostMapping("{templateUuid}/toAdd/{exerciseUuid}")
     public ResponseEntity<WorkoutTemplateResponseDTO> add(@PathVariable UUID templateUuid, @PathVariable UUID exerciseUuid) {
         WorkoutTemplateResponseDTO responseDTO = getService().add(templateUuid, exerciseUuid);
         if (responseDTO != null) {
@@ -38,5 +38,5 @@ public class WorkoutTemplateController extends BaseController<WorkoutTemplateReq
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
+    }*/
 }

@@ -9,7 +9,4 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper extends BaseMapper<UserEntity, UserResponseDTO, UserRequestDTO> {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Override
-    @Mapping(source = "appId", target = "app.id")
-    UserEntity requestDtoToEntity(UserRequestDTO requestDTO);
 }

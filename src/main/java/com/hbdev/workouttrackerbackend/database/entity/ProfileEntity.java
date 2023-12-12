@@ -21,10 +21,12 @@ public class ProfileEntity extends BaseEntity {
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<WorkoutEntity> workoutList;
 
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "profile_id")
     private List<WorkoutTemplateEntity> workoutTemplateList;
 
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "profile_id")
     private List<CustomExerciseEntity> customExerciseList;
 
 }

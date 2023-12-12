@@ -13,10 +13,6 @@ public interface DefaultExerciseMapper extends BaseMapper<DefaultExerciseEntity,
 
     DefaultExerciseMapper INSTANCE = Mappers.getMapper(DefaultExerciseMapper.class);
 
-    @Override
-    @Mapping(source = "appId", target = "app.id")
-    DefaultExerciseEntity requestDtoToEntity(DefaultExerciseRequestDTO requestDTO);
-
 }
 
  

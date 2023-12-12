@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
 public interface SetMapper extends BaseMapper<SetEntity, SetResponseDTO, SetRequestDTO> {
     SetMapper INSTANCE = Mappers.getMapper(SetMapper.class);
 
-    @Override
-    @Mapping(source = "workoutExerciseId", target = "workoutExercise.id")
-    SetEntity requestDtoToEntity(SetRequestDTO requestDTO);
+   /* @Override
+    @Mapping(source = "customExerciseId", target = "customExercise.id")
+    SetEntity requestDtoToEntity(SetRequestDTO requestDTO);*/
 }

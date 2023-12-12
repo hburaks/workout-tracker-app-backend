@@ -12,12 +12,5 @@ import org.mapstruct.factory.Mappers;
 public interface WorkoutTemplateMapper extends BaseMapper<WorkoutTemplateEntity, WorkoutTemplateResponseDTO, WorkoutTemplateRequestDTO> {
     WorkoutTemplateMapper INSTANCE = Mappers.getMapper(WorkoutTemplateMapper.class);
 
-    @Override
-    @Mapping(source = "profileId", target = "profile.id")
-    WorkoutTemplateEntity requestDtoToEntity(WorkoutTemplateRequestDTO requestDTO);
-
-    @Override
-    @Mapping(target = "profile", ignore = true)
-    WorkoutTemplateResponseDTO entityToResponseDto(WorkoutTemplateEntity entity);
 }
 

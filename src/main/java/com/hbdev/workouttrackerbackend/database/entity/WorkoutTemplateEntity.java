@@ -16,7 +16,9 @@ public class WorkoutTemplateEntity extends BaseEntity {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "workoutTemplate")
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "workout_template_id")
     private List<DefaultExerciseEntity> defaultExerciseList;
 
     @OneToMany(mappedBy = "workoutTemplate", cascade = CascadeType.ALL)
