@@ -35,14 +35,16 @@ public class SecurityConfiguration {
             "/api/public/**",
             "/api/public/authenticate",
             "/actuator/*",
+            "/login",
+/*
             "/**",
-
-
+*/
     };
     private static final String[] USER_AUTH_WHITELIST = {
-
             "/workout-template/**",
             "/register/**",
+            "/exercise/**",
+            "/profile/**"
     };
 
     private static final String[] ADMIN_AUTH_WHITELIST = {
