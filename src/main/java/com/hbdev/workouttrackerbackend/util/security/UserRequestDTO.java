@@ -21,5 +21,4 @@ public class UserRequestDTO extends BaseRequestDTO {
 
     private String photoLink;
 
-    private ProfileRequestDTO profileRequestDTO;
 }

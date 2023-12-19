@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Table
+@Table(name = "workout_templates")
 @Entity
 @Getter
 @Setter
@@ -16,12 +16,11 @@ public class WorkoutTemplateEntity extends BaseEntity {
     @Column
     private String name;
 
+    @OneToMany(mappedBy = "workoutTemplate", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<CustomExerciseEntity> customExerciseList;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "workout_template_id")
-    private List<DefaultExerciseEntity> defaultExerciseList;
-
-    @OneToMany(mappedBy = "workoutTemplate", cascade = CascadeType.ALL)
-    private List<WorkoutEntity> workout;
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private ProfileEntity profile;
 
 }

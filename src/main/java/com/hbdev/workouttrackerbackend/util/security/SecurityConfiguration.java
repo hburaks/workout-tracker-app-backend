@@ -36,9 +36,7 @@ public class SecurityConfiguration {
             "/api/public/authenticate",
             "/actuator/*",
             "/login",
-/*
             "/**",
-*/
     };
     private static final String[] USER_AUTH_WHITELIST = {
             "/workout-template/**",

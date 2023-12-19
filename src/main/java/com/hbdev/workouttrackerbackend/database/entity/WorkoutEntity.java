@@ -9,7 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import java.util.Date;
 import java.util.List;
 
-@Table
+@Table(name = "workouts")
 @Entity
 @Getter
 @Setter
@@ -28,7 +28,6 @@ public class WorkoutEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "workout_template_id")
     private WorkoutTemplateEntity workoutTemplate;
-
 
     @ManyToOne
     @JoinColumn(name = "profile_id")

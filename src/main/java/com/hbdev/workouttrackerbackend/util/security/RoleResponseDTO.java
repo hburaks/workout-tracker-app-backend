@@ -7,5 +7,5 @@ import java.util.List;
 public class RoleResponseDTO extends BaseResponseDTO {
     private String name;
     private String description;
-    private List<UserResponseWithoutRoleDTO> users;
+    private List<UserResponseDTO> users;
 }

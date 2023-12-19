@@ -4,7 +4,7 @@ import com.hbdev.workouttrackerbackend.database.entity.DbExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.repository.DbExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.specification.DbExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.DbExerciseMapper;
-import com.hbdev.workouttrackerbackend.model.responseDTOChecked.DbExerciseResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.DbExerciseResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;

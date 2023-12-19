@@ -1,8 +1,10 @@
 package com.hbdev.workouttrackerbackend.database.entity;
 
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
-import com.hbdev.workouttrackerbackend.util.security.UserEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,22 +13,19 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table
+@Table(name = "profiles")
 public class ProfileEntity extends BaseEntity {
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<WorkoutEntity> workoutList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "profile_id")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<WorkoutTemplateEntity> workoutTemplateList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "profile_id")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomExerciseEntity> customExerciseList;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<DefaultExerciseEntity> defaultExerciseList;
 
 }

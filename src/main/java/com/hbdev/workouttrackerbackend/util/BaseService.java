@@ -9,7 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 public abstract class BaseService<
@@ -55,6 +57,10 @@ public abstract class BaseService<
         responseDTO.setContent(getMapper().entityListToResponseDtoList(entityPage.getContent()));
 //        entityPage.get().map(entity -> getMapper().entityToResponseDto(entity)).collect(Collectors.toList());
         return responseDTO;
+    }
+
+    public List<ResponseDTO> findAll(){
+        return getMapper().entityListToResponseDtoList(getRepository().findAll());
     }
 
     public ResponseDTO save(RequestDTO requestDTO) {

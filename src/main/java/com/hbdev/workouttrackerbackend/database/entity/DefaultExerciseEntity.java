@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
-@Table
+@Table(name = "default_exercises")
 @Entity
 @Getter
 @Setter
@@ -17,10 +15,11 @@ public class DefaultExerciseEntity extends BaseEntity {
 
     private int rm1;
 
-    @OneToMany(mappedBy = "defaultExercise", cascade = CascadeType.ALL)
-    private List<CustomExerciseEntity> volumePrExercise;
-
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "db_exercise_id")
     private DbExerciseEntity dbExercise;
 
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private ProfileEntity profile;
 }

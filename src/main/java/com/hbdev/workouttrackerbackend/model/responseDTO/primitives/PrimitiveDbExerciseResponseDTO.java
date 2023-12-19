@@ -1,16 +1,11 @@
-package com.hbdev.workouttrackerbackend.model.responseDTOChecked;
+package com.hbdev.workouttrackerbackend.model.responseDTO.primitives;
 
-import com.hbdev.workouttrackerbackend.model.enums.*;
-import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class DbExerciseResponseDTO {
+public class PrimitiveDbExerciseResponseDTO {
 
     private String name;
 
@@ -33,4 +28,5 @@ public class DbExerciseResponseDTO {
     private String images;
 
     private String id;
+
 }

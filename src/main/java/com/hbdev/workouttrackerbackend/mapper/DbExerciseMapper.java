@@ -1,7 +1,7 @@
 package com.hbdev.workouttrackerbackend.mapper;
 
 import com.hbdev.workouttrackerbackend.database.entity.DbExerciseEntity;
-import com.hbdev.workouttrackerbackend.model.responseDTOChecked.DbExerciseResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.DbExerciseResponseDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

@@ -8,5 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfileRequestDTO extends BaseRequestDTO {
+/*
     private Long userId;
+*/
 }

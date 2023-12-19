@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table
+@Table(name = "sets")
 @Getter
 @Setter
 public class SetEntity extends BaseEntity {
@@ -16,6 +16,8 @@ public class SetEntity extends BaseEntity {
     private double weight;
 
     private int reps;
+
+    private boolean isDone;
 
     @Enumerated(EnumType.STRING)
     private SetTypeEnum setTypeEnum;

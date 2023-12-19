@@ -5,7 +5,6 @@ import com.hbdev.workouttrackerbackend.model.requestDTO.DefaultExerciseRequestDT
 import com.hbdev.workouttrackerbackend.model.responseDTO.DefaultExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

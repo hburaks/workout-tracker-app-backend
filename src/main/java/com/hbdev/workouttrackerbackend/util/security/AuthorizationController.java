@@ -1,14 +1,13 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
+import com.hbdev.workouttrackerbackend.Exceptions.UserNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,12 +29,13 @@ public class AuthorizationController {
         String token = jwtUtil.generateToken(body.getEmail());
         Map<String, Object> authorizationMap = new HashMap<>();
         authorizationMap.put("jwt-token", token);
+        authorizationMap.put("User", userService.getUser(body));
         return authorizationMap;
     }
 
 
     @PostMapping("register")
-    public ResponseEntity<Boolean> saveUser(@RequestBody UserRequestDTO body) {
+    public ResponseEntity<Boolean> saveUser(@RequestBody UserRequestDTO body) throws Exception {
         boolean isSaved = userService.saveUserByRole(body);
         if (isSaved) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -52,5 +52,30 @@ public class AuthorizationController {
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("isAuthorized")
+    public ResponseEntity<HttpStatus> isAuthorized(HttpServletRequest request) {
+        if (jwtUtil.findUserByRequest(request) != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @GetMapping("test")
+    public ResponseEntity<HttpStatus> test(HttpServletRequest request) {
+        int a = 10;
+        int b = 0;
+        try {
+
+            System.out.println(a / b);
+        } catch (Exception e) {
+            throw new UserNotFoundException("hi");
+        }
+
+        System.out.println(a + b);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

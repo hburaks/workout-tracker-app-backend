@@ -3,10 +3,20 @@ package com.hbdev.workouttrackerbackend.util;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
 import com.hbdev.workouttrackerbackend.util.pageable.BaseSpecification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 public abstract class BaseController<RequestDTO extends BaseRequestDTO, ResponseDTO extends BaseResponseDTO, Entity extends BaseEntity, Mapper extends BaseMapper<Entity, ResponseDTO, RequestDTO>, Repository extends BaseRepository<Entity>, Specification extends BaseSpecification<Entity>, Service extends BaseService<ResponseDTO, RequestDTO, Entity, Mapper, Repository, Specification>> {
 
     protected abstract Service getService();
+
+    @GetMapping("find-all")
+    public ResponseEntity<List<ResponseDTO>> findAll() {
+        return new ResponseEntity<>(getService().findAll(), HttpStatus.OK);
+    }
 
     /*@PostMapping("get-all-filter")
     public ResponseEntity<PageResponseDTO<ResponseDTO>> getAll(@RequestBody BaseFilterRequestDTO baseFilterRequestDTO) {

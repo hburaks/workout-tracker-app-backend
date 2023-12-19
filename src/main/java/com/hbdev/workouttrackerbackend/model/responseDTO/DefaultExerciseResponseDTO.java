@@ -1,22 +1,21 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
-import com.hbdev.workouttrackerbackend.model.enums.BodyPartTypeEnum;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
 public class DefaultExerciseResponseDTO extends BaseResponseDTO {
 
-    private String name;
+    private String note;
 
-    private String description;
+    private int rm1;
 
-    private String videoUrl;
+    private List<CustomExerciseResponseDTO> volumePrExercise;
 
-    private String imageUrl;
-
-    private BodyPartTypeEnum bodyPartType;
+    private DbExerciseResponseDTO dbExercise;
 
 }

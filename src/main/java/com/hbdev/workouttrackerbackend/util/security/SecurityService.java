@@ -38,4 +38,5 @@ public class SecurityService implements UserDetailsService {
                 user.get().getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_user")));
     }
+
 }

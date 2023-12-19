@@ -9,8 +9,6 @@ import com.hbdev.workouttrackerbackend.model.responseDTO.DefaultExerciseResponse
 import com.hbdev.workouttrackerbackend.service.DefaultExerciseService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

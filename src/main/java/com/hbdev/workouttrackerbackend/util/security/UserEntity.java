@@ -17,7 +17,8 @@ import java.util.Set;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 
     @Column

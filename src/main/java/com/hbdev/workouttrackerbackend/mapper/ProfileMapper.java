@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
 public interface ProfileMapper extends BaseMapper<ProfileEntity, ProfileResponseDTO, ProfileRequestDTO> {
     ProfileMapper INSTANCE = Mappers.getMapper(ProfileMapper.class);
 
-    @Override
+    /*@Override
     @Mapping(source = "userId", target = "user.id")
-    ProfileEntity requestDtoToEntity(ProfileRequestDTO requestDTO);
+    ProfileEntity requestDtoToEntity(ProfileRequestDTO requestDTO);*/
 }

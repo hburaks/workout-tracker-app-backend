@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table
+@Table(name = "roles")
 public class RoleEntity extends BaseEntity {
 
     @Column(unique = true)

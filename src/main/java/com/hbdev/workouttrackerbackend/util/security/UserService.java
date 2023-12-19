@@ -1,24 +1,37 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
+import com.hbdev.workouttrackerbackend.database.entity.DbExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.DefaultExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
+import com.hbdev.workouttrackerbackend.database.repository.DbExerciseRepository;
+import com.hbdev.workouttrackerbackend.database.repository.ProfileRepository;
 import com.hbdev.workouttrackerbackend.util.BaseService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, UserEntity, UserMapper, UserEntityRepository, UserSpecification> {
 
     private final UserEntityRepository userRepository;
     private final RoleEntityRepository roleRepository;
+    private final DbExerciseRepository dbExerciseRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserSpecification userSpecification;
-
+    private final ProfileRepository profileRepository;
+    private final JWTUtil jwtUtil;
+    Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Override
     protected UserMapper getMapper() {
@@ -36,47 +49,75 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
     }
 
     @Transactional
-    public boolean saveUserByRole(UserRequestDTO userRequestDTO) {
-        if (!isEmailExist(userRequestDTO.getEmail())) {
-            UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
-            user.setEnable(false);
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            Set<RoleEntity> roles = new HashSet<>();
-            RoleEntity roleEntity = roleRepository.findByName("user").orElse(null);
-            if (roleEntity == null) {
-                roleEntity = new RoleEntity();
-                roleEntity.setName("user");
-                roleEntity = roleRepository.save(roleEntity);
+    public boolean saveUserByRole(UserRequestDTO userRequestDTO) throws Exception {
+        try {
+            if (!isEmailExist(userRequestDTO.getEmail())) {
+                UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
+                user.setEnable(false);
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                Set<RoleEntity> roles = new HashSet<>();
+                RoleEntity roleEntity = roleRepository.findByName("user").orElse(null);
+                if (roleEntity == null) {
+                    roleEntity = new RoleEntity();
+                    roleEntity.setName("user");
+                    roleEntity = roleRepository.save(roleEntity);
+                }
+                ProfileEntity profile = new ProfileEntity();
+                user.setProfile(profile);
+                if(createDefaultExercisesAndAddToUser(user) == false){
+                    return false;
+                }
+                roles.add(roleEntity);
+                user.setRoles(roles);
+                userRepository.save(user);
+                return true;
             }
-            user.setProfile(new ProfileEntity());
-            roles.add(roleEntity);
-            user.setRoles(roles);
-            userRepository.save(user);
-            return true;
+            return false;
+        } catch (Exception e) {
+            logger.error("Error saving user: ", e);
+            return false;
+
         }
-        return false;
+    }
+
+    @Transactional
+    public UserResponseDTO getUser(LoginRequestDTO request) {
+        UserEntity userEntity;
+        userEntity = getRepository().findByEmail(request.getEmail()).orElse(null);
+        if (userEntity == null) {
+            logger.error("Can not find the user");
+            return null;
+        }
+        return getMapper().entityToResponseDto(userEntity);
     }
 
     @Transactional
     public boolean saveAdmin(UserRequestDTO userRequestDTO) {
-        if (!isEmailExist(userRequestDTO.getEmail())) {
-            UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
-            user.setEnable(false);
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            Set<RoleEntity> roles = new HashSet<>();
-            RoleEntity roleEntity = roleRepository.findByName("admin").orElse(null);
-            if (roleEntity == null) {
-                roleEntity = new RoleEntity();
-                roleEntity.setName("admin");
-                roleEntity = roleRepository.save(roleEntity);
+        try {
+            if (!isEmailExist(userRequestDTO.getEmail())) {
+                UserEntity user = getMapper().requestDtoToEntity(userRequestDTO);
+                user.setEnable(false);
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                Set<RoleEntity> roles = new HashSet<>();
+                RoleEntity roleEntity = roleRepository.findByName("admin").orElse(null);
+                if (roleEntity == null) {
+                    roleEntity = new RoleEntity();
+                    roleEntity.setName("admin");
+                    roleEntity = roleRepository.save(roleEntity);
+                }
+                roles.add(roleEntity);
+                user.setRoles(roles);
+                ProfileEntity profile = new ProfileEntity();
+                user.setProfile(profile);
+                createDefaultExercisesAndAddToUser(user);
+                userRepository.save(user);
+                return true;
             }
-            roles.add(roleEntity);
-            user.setRoles(roles);
-            user.setProfile(new ProfileEntity());
-            userRepository.save(user);
-            return true;
+            return false;
+        } catch (Exception e) {
+            logger.error("Error saving admin: ", e);
+            return false;
         }
-        return false;
     }
 
     public boolean isEmailExist(String email) {
@@ -84,4 +125,26 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
     }
 
 
+    public boolean createDefaultExercisesAndAddToUser(UserEntity user) {
+        try {
+            List<DefaultExerciseEntity> defaultExerciseList = new ArrayList<>();
+            ProfileEntity profile = new ProfileEntity();
+
+
+
+            List<DbExerciseEntity> dbExerciseList = dbExerciseRepository.findAll();
+            for (DbExerciseEntity dbExercise : dbExerciseList) {
+                DefaultExerciseEntity defaultExercise = new DefaultExerciseEntity();
+                defaultExercise.setDbExercise(dbExercise);
+                defaultExercise.setProfile(profile);
+                defaultExerciseList.add(defaultExercise);
+            }
+            profile.setDefaultExerciseList(defaultExerciseList);
+            user.setProfile(profile);
+            return true;
+        } catch (Exception e) {
+            logger.error("Repository error", e);
+            return false;
+        }
+    }
 }

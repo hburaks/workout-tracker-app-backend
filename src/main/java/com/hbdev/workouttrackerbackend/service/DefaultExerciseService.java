@@ -8,7 +8,12 @@ import com.hbdev.workouttrackerbackend.model.requestDTO.DefaultExerciseRequestDT
 import com.hbdev.workouttrackerbackend.model.responseDTO.DefaultExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -16,6 +21,8 @@ import org.springframework.stereotype.Service;
 public class DefaultExerciseService extends BaseService<DefaultExerciseResponseDTO, DefaultExerciseRequestDTO, DefaultExerciseEntity, DefaultExerciseMapper, DefaultExerciseRepository, DefaultExerciseSpecification> {
     private final DefaultExerciseRepository defaultExerciseRepository;
     private final DefaultExerciseSpecification defaultExerciseSpecification;
+
+    Logger logger = LoggerFactory.getLogger(DefaultExerciseService.class);
 
 
     @Override
@@ -34,4 +41,14 @@ public class DefaultExerciseService extends BaseService<DefaultExerciseResponseD
     }
 
 
+    public DefaultExerciseEntity findDefaultExerciseEntityFromUuid(UUID defaultExerciseUuid, List<DefaultExerciseEntity> defaultExerciseEntityList) {
+
+        for (DefaultExerciseEntity defaultExercise : defaultExerciseEntityList) {
+            if (defaultExercise.getUuid().equals(defaultExerciseUuid)) {
+                return defaultExercise;
+            }
+        }
+        logger.error("Can not find the default exercise for the given uuid");
+        return null;
+    }
 }

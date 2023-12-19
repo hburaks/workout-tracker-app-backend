@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("profile")
 @RequiredArgsConstructor
@@ -27,6 +29,8 @@ public class ProfileController extends BaseController<ProfileRequestDTO,
         ProfileService> {
     private final ProfileService profileService;
 
+    private final ProfileRepository profileRepository;
+
 
     @Override
     protected ProfileService getService() {
@@ -35,9 +39,14 @@ public class ProfileController extends BaseController<ProfileRequestDTO,
 
 
     @GetMapping("test")
-    public ResponseEntity<HttpStatus> test(){
+    public ResponseEntity<HttpStatus> test() {
         getService().printRequestAttribute();
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProfileEntity>> getAllUsers() {
+        return new ResponseEntity<>(profileRepository.findAll(), HttpStatus.OK);
     }
 
 

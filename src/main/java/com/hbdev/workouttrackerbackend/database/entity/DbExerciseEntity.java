@@ -10,7 +10,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Table(name = "db_exercise_entity")
+@Table(name = "db_exercises")
 @Entity
 @Getter
 @Setter
