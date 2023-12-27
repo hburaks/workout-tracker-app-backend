@@ -4,8 +4,6 @@ import com.hbdev.workouttrackerbackend.database.entity.DefaultExerciseEntity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface DefaultExerciseRepository extends BaseRepository<DefaultExerciseEntity> {
 }

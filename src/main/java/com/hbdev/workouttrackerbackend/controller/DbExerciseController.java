@@ -18,8 +18,8 @@ public class DbExerciseController {
     private final DbExerciseService dbExerciseService;
 
     @GetMapping("get-all")
-    public ResponseEntity<List<DbExerciseResponseDTO>> getAll(){
-        return new ResponseEntity<>(dbExerciseService.getAll(), HttpStatus.OK) ;
+    public ResponseEntity<List<DbExerciseResponseDTO>> getAll() {
+        return new ResponseEntity<>(dbExerciseService.getAll(), HttpStatus.OK);
     }
 
 }

@@ -1,14 +1,11 @@
 package com.hbdev.workouttrackerbackend.database.entity;
 
-import com.hbdev.workouttrackerbackend.model.enums.EquipmentTypeDbEnum;
-import com.hbdev.workouttrackerbackend.model.enums.ForceDbEnum;
-import com.hbdev.workouttrackerbackend.model.enums.LevelDbEnum;
-import com.hbdev.workouttrackerbackend.model.enums.MuscleGroupDbEnum;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Table(name = "db_exercises")
 @Entity

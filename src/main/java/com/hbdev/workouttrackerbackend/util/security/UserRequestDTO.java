@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.model.requestDTO.ProfileRequestDTO;
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
 import lombok.Getter;
 import lombok.Setter;

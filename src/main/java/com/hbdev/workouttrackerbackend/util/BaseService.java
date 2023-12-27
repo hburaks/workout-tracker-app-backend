@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -59,7 +58,7 @@ public abstract class BaseService<
         return responseDTO;
     }
 
-    public List<ResponseDTO> findAll(){
+    public List<ResponseDTO> findAll() {
         return getMapper().entityListToResponseDtoList(getRepository().findAll());
     }
 

@@ -1,7 +1,5 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO.checked;
 
-import com.hbdev.workouttrackerbackend.model.responseDTO.SetResponseDTO;
-import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutResponseDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.primitives.PrimitiveSetResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Getter;
