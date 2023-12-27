@@ -6,6 +6,7 @@ import com.hbdev.workouttrackerbackend.database.entity.ProfileEntity;
 import com.hbdev.workouttrackerbackend.database.repository.DbExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.repository.ProfileRepository;
 import com.hbdev.workouttrackerbackend.util.BaseService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +65,7 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
                 }
                 ProfileEntity profile = new ProfileEntity();
                 user.setProfile(profile);
-                if(createDefaultExercisesAndAddToUser(user) == false){
+                if (createDefaultExercisesAndAddToUser(user) == false) {
                     return false;
                 }
                 roles.add(roleEntity);
@@ -81,7 +82,7 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
     }
 
     @Transactional
-    public UserResponseDTO getUser(LoginRequestDTO request) {
+    public UserResponseDTO getUserResponseDTO(LoginRequestDTO request) {
         UserEntity userEntity;
         userEntity = getRepository().findByEmail(request.getEmail()).orElse(null);
         if (userEntity == null) {
@@ -89,6 +90,17 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
             return null;
         }
         return getMapper().entityToResponseDto(userEntity);
+    }
+
+    @Transactional
+    public UserEntity getUser(HttpServletRequest request) {
+        UserEntity userEntity;
+        userEntity = jwtUtil.findUserByRequest(request);
+        if (userEntity == null) {
+            logger.error("Can not find the user");
+            return null;
+        }
+        return userEntity;
     }
 
     @Transactional
@@ -129,9 +141,6 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
         try {
             List<DefaultExerciseEntity> defaultExerciseList = new ArrayList<>();
             ProfileEntity profile = new ProfileEntity();
-
-
-
             List<DbExerciseEntity> dbExerciseList = dbExerciseRepository.findAll();
             for (DbExerciseEntity dbExercise : dbExerciseList) {
                 DefaultExerciseEntity defaultExercise = new DefaultExerciseEntity();
@@ -145,6 +154,15 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
         } catch (Exception e) {
             logger.error("Repository error", e);
             return false;
+        }
+    }
+
+    public Set<PrimitiveRoleResponseDTO> findRole(HttpServletRequest request) {
+        UserEntity user = jwtUtil.findUserByRequest(request);
+        if (user != null) {
+            return getMapper().entityToResponseDto(user).getRoles();
+        } else {
+            return null;
         }
     }
 }

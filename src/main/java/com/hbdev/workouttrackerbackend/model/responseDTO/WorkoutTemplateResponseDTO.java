@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
-import com.hbdev.workouttrackerbackend.model.responseDTO.primitives.PrimitiveDefaultExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,7 @@ public class WorkoutTemplateResponseDTO extends BaseResponseDTO {
 
     private String name;
 
-    private List<PrimitiveDefaultExerciseResponseDTO> defaultExerciseList;
+    private List<CustomExerciseResponseDTO> customExerciseList;
 
     private List<WorkoutResponseDTO> workout;
 

@@ -6,14 +6,21 @@ import com.hbdev.workouttrackerbackend.database.specification.DefaultExerciseSpe
 import com.hbdev.workouttrackerbackend.mapper.DefaultExerciseMapper;
 import com.hbdev.workouttrackerbackend.model.requestDTO.DefaultExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.DefaultExerciseResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.DefaultExerciseInListResponseDTO;
 import com.hbdev.workouttrackerbackend.service.DefaultExerciseService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("app")
+@RequestMapping("default-exercise")
 @RequiredArgsConstructor
 public class DefaultExerciseController extends BaseController<DefaultExerciseRequestDTO, DefaultExerciseResponseDTO, DefaultExerciseEntity, DefaultExerciseMapper, DefaultExerciseRepository, DefaultExerciseSpecification, DefaultExerciseService> {
     private final DefaultExerciseService defaultExerciseService;
@@ -21,6 +28,14 @@ public class DefaultExerciseController extends BaseController<DefaultExerciseReq
     @Override
     protected DefaultExerciseService getService() {
         return defaultExerciseService;
+    }
+
+    @PostMapping("find-all")
+    public ResponseEntity<List<DefaultExerciseInListResponseDTO>> findAll(HttpServletRequest request) {
+        List<DefaultExerciseInListResponseDTO> defaultExerciseList = defaultExerciseService.findAllForTheUser(request);
+        return new ResponseEntity<>(defaultExerciseList, HttpStatus.OK);
+
+
     }
 
 }

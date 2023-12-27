@@ -15,14 +15,18 @@ import java.util.List;
 @Setter
 public class WorkoutEntity extends BaseEntity {
 
-    private int duration;
+    private int durationInSecond;
 
-    private int volume;
+    private double volume;
+
+    private boolean isFinished;
 
     @CreatedDate
-    private Date date;
+    private Date startDate;
 
-    @OneToMany(mappedBy = "workout", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Date endDate;
+
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CustomExerciseEntity> customExerciseList;
 
     @ManyToOne
@@ -33,4 +37,7 @@ public class WorkoutEntity extends BaseEntity {
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 
+    public WorkoutEntity() {
+        this.isFinished = false;
+    }
 }

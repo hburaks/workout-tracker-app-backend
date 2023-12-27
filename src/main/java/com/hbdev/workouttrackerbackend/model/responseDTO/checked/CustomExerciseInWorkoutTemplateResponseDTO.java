@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO.checked;
 
-import com.hbdev.workouttrackerbackend.model.responseDTO.primitives.PrimitiveSetResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CustomExerciseInProfileResponseDTO extends BaseResponseDTO {
+public class CustomExerciseInWorkoutTemplateResponseDTO extends BaseResponseDTO {
 
     private String name;
 
@@ -19,7 +18,7 @@ public class CustomExerciseInProfileResponseDTO extends BaseResponseDTO {
 
     private int restTime;
 
-    private List<PrimitiveSetResponseDTO> Sets;
+    private List<SetInCustomExerciseResponseDTO> Sets;
 
     private DefaultExerciseInCustomExerciseResponseDTO defaultExercise;
 

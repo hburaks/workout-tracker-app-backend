@@ -69,7 +69,6 @@ public class JWTUtil {
             } else {
                 logger.error("Authorization value is not in the required format");
             }
-
         } catch (Exception e) {
             logger.error("Incorrect Bearer Token or Format", e);
         }

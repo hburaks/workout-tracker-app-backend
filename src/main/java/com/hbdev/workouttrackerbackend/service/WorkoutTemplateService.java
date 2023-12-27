@@ -2,6 +2,7 @@ package com.hbdev.workouttrackerbackend.service;
 
 import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.DefaultExerciseEntity;
+import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
 import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
 import com.hbdev.workouttrackerbackend.database.specification.WorkoutTemplateSpecification;
@@ -9,6 +10,7 @@ import com.hbdev.workouttrackerbackend.mapper.WorkoutTemplateMapper;
 import com.hbdev.workouttrackerbackend.model.requestDTO.used.CustomExerciseRequestForTemplateDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.used.WorkoutTemplateRequestDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutTemplateResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.WorkoutTemplateInProfileResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
 import com.hbdev.workouttrackerbackend.util.security.JWTUtil;
 import com.hbdev.workouttrackerbackend.util.security.UserEntity;
@@ -30,7 +32,6 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
     private final UserEntityRepository userEntityRepository;
     private final DefaultExerciseService defaultExerciseService;
     private final WorkoutTemplateSpecification workoutTemplateSpecification;
-    private final CustomExerciseService customExerciseService;
     private final SetService setService;
     private final JWTUtil jwtUtil;
 
@@ -52,14 +53,17 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
     }
 
 
-    private CustomExerciseEntity defaultExerciseToCustomExercise(DefaultExerciseEntity defaultExercise) {
+    public CustomExerciseEntity defaultExerciseToCustomExercise(DefaultExerciseEntity defaultExercise) {
         CustomExerciseEntity workoutExercise = new CustomExerciseEntity();
+        workoutExercise.setName(defaultExercise.getDbExercise().getName());
         workoutExercise.setDefaultExercise(defaultExercise);
+        workoutExercise.setProfile(defaultExercise.getProfile());
+        workoutExercise.setSets(new ArrayList<>());
         return workoutExercise;
     }
 
     @Transactional
-    public WorkoutTemplateResponseDTO createTemplateForUser(WorkoutTemplateRequestDTO workoutTemplateRequestDTO, HttpServletRequest request) {
+    public List<WorkoutTemplateInProfileResponseDTO> createTemplateForUser(WorkoutTemplateRequestDTO workoutTemplateRequestDTO, HttpServletRequest request) {
 
         UserEntity userEntity;
         userEntity = jwtUtil.findUserByRequest(request);
@@ -68,6 +72,10 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
             return null;
         }
 
+        return createTemplate(workoutTemplateRequestDTO, userEntity);
+    }
+
+    public List<WorkoutTemplateInProfileResponseDTO> createTemplate(WorkoutTemplateRequestDTO workoutTemplateRequestDTO, UserEntity userEntity) {
         if (userEntity.getProfile().getWorkoutTemplateList().isEmpty()) {
             userEntity.getProfile().setWorkoutTemplateList(new ArrayList<>());
         }
@@ -76,29 +84,46 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
         userEntity.getProfile().getWorkoutTemplateList().add(workoutTemplateEntity);
 
         workoutTemplateEntity.setName(workoutTemplateRequestDTO.getName());
+        workoutTemplateEntity.setCustomExerciseList(new ArrayList<>());
+        workoutTemplateEntity.setProfile(userEntity.getProfile());
         List<DefaultExerciseEntity> defaultExerciseEntityList = userEntity.getProfile().getDefaultExerciseList();
 
 
         List<CustomExerciseRequestForTemplateDTO> customExerciseRequestForTemplateDTOS = workoutTemplateRequestDTO.getCustomExerciseRequestDTOList();
 
         for (CustomExerciseRequestForTemplateDTO customExerciseRequestForTemplateDTO : customExerciseRequestForTemplateDTOS) {
-            DefaultExerciseEntity defaultExercise = defaultExerciseService.findDefaultExerciseEntityFromUuid(customExerciseRequestForTemplateDTO.getDefaultExerciseUuid(), defaultExerciseEntityList);
-            CustomExerciseEntity customExercise = customExerciseService.createCustomExerciseFromDefaultExercise(defaultExercise);
 
+            DefaultExerciseEntity defaultExercise = defaultExerciseService.findDefaultExerciseEntityFromUuid(customExerciseRequestForTemplateDTO.getDefaultExerciseUuid(), defaultExerciseEntityList);
+
+            CustomExerciseEntity customExercise = defaultExerciseToCustomExercise(defaultExercise);
             customExercise.setNote(customExerciseRequestForTemplateDTO.getNote());
             customExercise.setRestTime(customExerciseRequestForTemplateDTO.getRestTime());
             customExercise.getSets().addAll(setService.requestListToEntityList(customExerciseRequestForTemplateDTO.getSets()));
+            customExercise.setWorkoutTemplate(workoutTemplateEntity);
 
+            userEntity.getProfile().getCustomExerciseList().add(customExercise);
             workoutTemplateEntity.getCustomExerciseList().add(customExercise);
         }
         try {
-            userEntityRepository.save(userEntity);
-
+            UserEntity savedUser = userEntityRepository.saveAndFlush(userEntity);
+            return getMapper().entityListToResponseDtoListInProfile(savedUser.getProfile().getWorkoutTemplateList());
         } catch (Exception e) {
             logger.error("Can not save the user", e);
         }
+        return null;
+    }
 
-        return getMapper().entityToResponseDto(workoutTemplateEntity);
+    public void updateTemplateFromWorkout(WorkoutEntity workoutEntity) {
+        workoutEntity.getWorkoutTemplate().setCustomExerciseList(new ArrayList<>());
+        for (CustomExerciseEntity customExerciseEntity : workoutEntity.getCustomExerciseList()) {
+            DefaultExerciseEntity defaultExercise = customExerciseEntity.getDefaultExercise();
+            CustomExerciseEntity customExercise = defaultExerciseToCustomExercise(defaultExercise);
+            customExercise.setNote(customExerciseEntity.getNote());
+            customExercise.setRestTime(customExerciseEntity.getRestTime());
+            customExercise.getSets().addAll(customExerciseEntity.getSets());
+            customExercise.setWorkoutTemplate(customExerciseEntity.getWorkoutTemplate());
+            workoutEntity.getWorkoutTemplate().getCustomExerciseList().add(customExercise);
+        }
     }
 }
 

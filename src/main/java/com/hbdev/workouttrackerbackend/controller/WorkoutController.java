@@ -6,11 +6,17 @@ import com.hbdev.workouttrackerbackend.database.specification.WorkoutSpecificati
 import com.hbdev.workouttrackerbackend.mapper.WorkoutMapper;
 import com.hbdev.workouttrackerbackend.model.requestDTO.WorkoutRequestDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.WorkoutResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.WorkoutFinishedResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.WorkoutStartedResponseDTO;
 import com.hbdev.workouttrackerbackend.service.WorkoutService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("workout")
@@ -22,4 +28,26 @@ public class WorkoutController extends BaseController<WorkoutRequestDTO, Workout
     protected WorkoutService getService() {
         return workoutService;
     }
+
+    @PostMapping("start-workout/{uuid}")
+    public ResponseEntity<WorkoutStartedResponseDTO> createWorkout(@PathVariable UUID uuid, HttpServletRequest request) {
+        WorkoutStartedResponseDTO responseDTO = getService().startWorkoutForUser(uuid, request);
+        if (responseDTO != null) {
+            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("finish-workout/{uuid}")
+    public ResponseEntity<WorkoutFinishedResponseDTO> finishWorkout(@PathVariable UUID uuid, @RequestBody WorkoutRequestDTO requestDTO, HttpServletRequest request) {
+        WorkoutFinishedResponseDTO responseDTO = getService().finishWorkoutForUser(uuid, request, requestDTO);
+        if (responseDTO != null) {
+            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //TODO: any unfinished workout? you are finishing the last workout that is unfinished. so you need to check if there is any unfinished before start a new one(add a kontrol)
 }

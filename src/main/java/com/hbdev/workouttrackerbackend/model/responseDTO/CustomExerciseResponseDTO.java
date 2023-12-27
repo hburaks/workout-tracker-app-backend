@@ -1,6 +1,8 @@
 package com.hbdev.workouttrackerbackend.model.responseDTO;
 
 import com.hbdev.workouttrackerbackend.model.responseDTO.checked.DefaultExerciseInCustomExerciseResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.SetInCustomExerciseResponseDTO;
+import com.hbdev.workouttrackerbackend.model.responseDTO.checked.WorkoutInCustomExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +21,10 @@ public class CustomExerciseResponseDTO extends BaseResponseDTO {
 
     private int restTime;
 
-    private List<SetResponseDTO> Sets;
+    private List<SetInCustomExerciseResponseDTO> Sets;
 
     private DefaultExerciseInCustomExerciseResponseDTO defaultExercise;
 
-    private WorkoutResponseDTO workout;
+    private WorkoutInCustomExerciseResponseDTO workout;
 
 }

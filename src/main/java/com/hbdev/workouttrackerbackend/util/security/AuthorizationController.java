@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("auth")
@@ -29,7 +30,7 @@ public class AuthorizationController {
         String token = jwtUtil.generateToken(body.getEmail());
         Map<String, Object> authorizationMap = new HashMap<>();
         authorizationMap.put("jwt-token", token);
-        authorizationMap.put("User", userService.getUser(body));
+        // authorizationMap.put("User", userService.getUser(body));
         return authorizationMap;
     }
 
@@ -54,10 +55,11 @@ public class AuthorizationController {
         }
     }
 
-    @GetMapping("isAuthorized")
-    public ResponseEntity<HttpStatus> isAuthorized(HttpServletRequest request) {
-        if (jwtUtil.findUserByRequest(request) != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("findRole")
+    public ResponseEntity<Set<PrimitiveRoleResponseDTO>> findRole(HttpServletRequest request) {
+        Set<PrimitiveRoleResponseDTO> responseDTO = userService.findRole(request);
+        if (responseDTO != null) {
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -18,15 +18,16 @@ public class SetEntity extends BaseEntity {
     private int reps;
 
     private boolean isDone;
-
     @Enumerated(EnumType.STRING)
     private SetTypeEnum setTypeEnum;
-
     @Enumerated(EnumType.STRING)
     private WeightUnitTypeEnum weightUnitTypeEnum;
-
     @ManyToOne
     @JoinColumn(name = "custom_exercise_id")
     private CustomExerciseEntity customExercise;
+
+    public SetEntity() {
+        this.isDone = false;
+    }
 
 }

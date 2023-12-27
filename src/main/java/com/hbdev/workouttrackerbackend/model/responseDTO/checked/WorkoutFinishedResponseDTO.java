@@ -1,4 +1,4 @@
-package com.hbdev.workouttrackerbackend.model.responseDTO;
+package com.hbdev.workouttrackerbackend.model.responseDTO.checked;
 
 import com.hbdev.workouttrackerbackend.model.responseDTO.primitives.PrimitiveWorkoutTemplateResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseResponseDTO;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class WorkoutResponseDTO extends BaseResponseDTO {
+public class WorkoutFinishedResponseDTO extends BaseResponseDTO {
 
     private int durationInSecond;
 
@@ -20,7 +20,7 @@ public class WorkoutResponseDTO extends BaseResponseDTO {
 
     private Date endDate;
 
-    private List<CustomExerciseResponseDTO> customExerciseList;
+    private List<CustomExerciseInWorkoutResponseDTO> customExerciseList;
 
     private PrimitiveWorkoutTemplateResponseDTO workoutTemplate;
 

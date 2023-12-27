@@ -3,6 +3,7 @@ package com.hbdev.workouttrackerbackend.database.entity;
 import com.hbdev.workouttrackerbackend.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -11,18 +12,19 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class CustomExerciseEntity extends BaseEntity {
 
     private String name;
 
-    private int volume;
+    private double volume;
 
     private String note;
 
     private int restTime;
 
     @OneToMany(mappedBy = "customExercise", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<SetEntity> Sets;
+    private List<SetEntity> sets;//
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "default_exercise_id")
@@ -39,5 +41,14 @@ public class CustomExerciseEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "workout_template_id")
     private WorkoutTemplateEntity workoutTemplate;
+
+    public CustomExerciseEntity(CustomExerciseEntity other) {
+        this.setName(other.getName());
+        this.setRestTime(other.getRestTime());
+        this.setSets(other.getSets());
+        this.setDefaultExercise(other.getDefaultExercise());
+        this.setProfile(other.getProfile());
+        this.setWorkoutTemplate(other.workoutTemplate);
+    }
 
 }
