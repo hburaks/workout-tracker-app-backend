@@ -40,7 +40,6 @@ public class SetService extends BaseService<SetResponseDTO, SetRequestDTO, SetEn
     }
 
     public List<SetEntity> requestListToEntityList(List<SetRequestDTO> requestDTOList) {
-        // TODO: may cause error from initial false value
         return getMapper().requestListToEntityList(requestDTOList);
         /*List<SetEntity> setEntities = new ArrayList<>();
         for (SetRequestDTO requestDTO : requestDTOList) {

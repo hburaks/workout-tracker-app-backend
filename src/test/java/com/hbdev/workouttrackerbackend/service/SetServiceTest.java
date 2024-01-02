@@ -57,6 +57,5 @@ class SetServiceTest {
 
         assertEquals(expectedVolume, volumeOfSets, "The calculated volume of the list is incorrect.");
 
-        //TODO: getting 0 from volume;
     }
 }

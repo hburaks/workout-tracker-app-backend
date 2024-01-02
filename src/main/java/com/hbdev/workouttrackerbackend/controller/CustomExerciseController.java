@@ -24,5 +24,4 @@ public class CustomExerciseController extends BaseController<CustomExerciseReque
         return customExerciseService;
     }
 
-    //TODO ilişki kontrolünden devam
 }
