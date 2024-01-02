@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 public class PrimitiveSetResponseDTO extends BaseResponseDTO {
 
-    private double weight;
+    private Double weight;
 
-    private int reps;
+    private Integer reps;
 
     private SetTypeEnum setTypeEnum;
 

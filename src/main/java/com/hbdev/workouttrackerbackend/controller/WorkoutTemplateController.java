@@ -41,7 +41,8 @@ public class WorkoutTemplateController extends BaseController<WorkoutTemplateReq
     }
 
     @GetMapping("find-all")
-    public ResponseEntity<List<WorkoutTemplateResponseDTO>> findAll() {
-        return new ResponseEntity<>(getService().findAll(), HttpStatus.OK);
+    public ResponseEntity<List<WorkoutTemplateInProfileResponseDTO>> findAll(HttpServletRequest request) {
+        List<WorkoutTemplateInProfileResponseDTO> workoutTemplateList = workoutTemplateService.findAllForUser(request);
+        return new ResponseEntity<>(workoutTemplateList, HttpStatus.OK);
     }
 }

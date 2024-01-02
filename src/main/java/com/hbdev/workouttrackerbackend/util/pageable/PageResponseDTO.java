@@ -11,9 +11,9 @@ import java.util.List;
 @Setter
 public class PageResponseDTO<DTO extends BaseResponseDTO> {
 
-    private int number;
-    private int size;
-    private int totalPages;
+    private Integer number;
+    private Integer size;
+    private Integer totalPages;
     private Long totalElements;
     private boolean hasContent;
     private List<DTO> content;

@@ -27,7 +27,7 @@ import java.util.UUID;
 public class DefaultExerciseService extends BaseService<DefaultExerciseResponseDTO, DefaultExerciseRequestDTO, DefaultExerciseEntity, DefaultExerciseMapper, DefaultExerciseRepository, DefaultExerciseSpecification> {
     private final DefaultExerciseRepository defaultExerciseRepository;
     private final DefaultExerciseSpecification defaultExerciseSpecification;
-    JWTUtil jwtUtil;
+    private final JWTUtil jwtUtil;
 
     Logger logger = LoggerFactory.getLogger(DefaultExerciseService.class);
 

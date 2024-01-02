@@ -11,9 +11,9 @@ import java.util.List;
 @Setter
 public class WorkoutInWorkoutTemplateResponseDTO extends BaseResponseDTO {
 
-    private int duration;
+    private Integer duration;
 
-    private double volume;
+    private Double volume;
 
     private Date date;
 

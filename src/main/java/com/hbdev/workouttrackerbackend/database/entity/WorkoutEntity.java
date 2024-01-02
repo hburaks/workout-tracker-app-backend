@@ -15,9 +15,9 @@ import java.util.List;
 @Setter
 public class WorkoutEntity extends BaseEntity {
 
-    private int durationInSecond;
+    private Integer durationInSecond;
 
-    private double volume;
+    private Double volume;
 
     private boolean isFinished;
 

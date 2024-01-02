@@ -17,7 +17,7 @@ public class DefaultExerciseRequestDTO extends BaseRequestDTO {
 
     private String note;
 
-    private int rm1;
+    private Integer rm1;
 
     private BodyPartTypeEnum bodyPartType;
 

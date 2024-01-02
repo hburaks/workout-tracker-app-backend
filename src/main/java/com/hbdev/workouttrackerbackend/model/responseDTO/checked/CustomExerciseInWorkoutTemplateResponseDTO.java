@@ -12,11 +12,11 @@ public class CustomExerciseInWorkoutTemplateResponseDTO extends BaseResponseDTO 
 
     private String name;
 
-    private int volume;
+    private Integer volume;
 
     private String note;
 
-    private int restTime;
+    private Integer restTime;
 
     private List<SetInCustomExerciseResponseDTO> Sets;
 

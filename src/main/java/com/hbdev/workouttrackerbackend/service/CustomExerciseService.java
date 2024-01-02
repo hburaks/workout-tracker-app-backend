@@ -1,16 +1,16 @@
 package com.hbdev.workouttrackerbackend.service;
 
 import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
-import com.hbdev.workouttrackerbackend.database.entity.SetEntity;
 import com.hbdev.workouttrackerbackend.database.repository.CustomExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.specification.CustomExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.CustomExerciseMapper;
-import com.hbdev.workouttrackerbackend.model.enums.WeightUnitTypeEnum;
 import com.hbdev.workouttrackerbackend.model.requestDTO.CustomExerciseRequestDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.CustomExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.util.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class CustomExerciseService extends BaseService<CustomExerciseResponseDTO, CustomExerciseRequestDTO, CustomExerciseEntity, CustomExerciseMapper, CustomExerciseRepository, CustomExerciseSpecification> {
     private final CustomExerciseRepository customExerciseRepository;
     private final CustomExerciseSpecification customExerciseSpecification;
-
+    private final SetService setService;
 
     @Override
     protected CustomExerciseMapper getMapper() {
@@ -36,18 +36,14 @@ public class CustomExerciseService extends BaseService<CustomExerciseResponseDTO
     }
 
 
-    public double calculateVolumeOfCustomExercise(CustomExerciseEntity customExerciseEntity) {
-        double volume = 0;
-        for (SetEntity set : customExerciseEntity.getSets()) {
-            double weightOfTheSet = set.getWeight();
+    public Double calculateVolumeOfCustomExerciseList(List<CustomExerciseEntity> customExerciseList) {
+        Double volumeOfList = 0.0;
+        for (CustomExerciseEntity customExercise : customExerciseList) {
+            Double volumeOfExercise = setService.calculateVolumeOfSets(customExercise.getSets());
+            customExercise.setVolume(volumeOfExercise);
 
-            if (set.getWeightUnitTypeEnum().equals(WeightUnitTypeEnum.LB)) {
-                weightOfTheSet *= 0.453592;
-            }
-
-            volume += weightOfTheSet * set.getReps();
+            volumeOfList += customExercise.getVolume();
         }
-        customExerciseEntity.setVolume(volume);
-        return volume;
+        return volumeOfList;
     }
 }

@@ -13,7 +13,7 @@ public class CustomExerciseRequestForTemplateDTO extends BaseRequestDTO {
 
     private String note;
 
-    private int restTime;
+    private Integer restTime;
 
     private List<SetRequestDTO> Sets;
 

@@ -16,6 +16,7 @@ public interface WorkoutTemplateMapper extends BaseMapper<WorkoutTemplateEntity,
 
     List<WorkoutTemplateInProfileResponseDTO> entityListToResponseDtoListInProfile(List<WorkoutTemplateEntity> entityList);
 
+    List<WorkoutTemplateInProfileResponseDTO> listToResponseList(List<WorkoutTemplateEntity> defaultExerciseEntityList);
 
 }
 

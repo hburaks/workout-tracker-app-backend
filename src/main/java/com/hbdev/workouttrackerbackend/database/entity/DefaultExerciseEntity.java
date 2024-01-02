@@ -13,7 +13,7 @@ public class DefaultExerciseEntity extends BaseEntity {
 
     private String note;
 
-    private int rm1;
+    private Integer rm1;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "db_exercise_id")

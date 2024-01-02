@@ -13,11 +13,10 @@ import lombok.Setter;
 @Setter
 public class SetEntity extends BaseEntity {
 
-    private double weight;
+    private Double weight;
 
-    private int reps;
+    private Integer reps;
 
-    private boolean isDone;
     @Enumerated(EnumType.STRING)
     private SetTypeEnum setTypeEnum;
     @Enumerated(EnumType.STRING)
@@ -25,9 +24,5 @@ public class SetEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "custom_exercise_id")
     private CustomExerciseEntity customExercise;
-
-    public SetEntity() {
-        this.isDone = false;
-    }
 
 }

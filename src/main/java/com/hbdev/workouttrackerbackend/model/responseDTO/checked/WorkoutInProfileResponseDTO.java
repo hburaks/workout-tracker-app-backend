@@ -12,9 +12,9 @@ import java.util.List;
 @Setter
 public class WorkoutInProfileResponseDTO extends BaseResponseDTO {
 
-    private int duration;
+    private Integer duration;
 
-    private int volume;
+    private Integer volume;
 
     private Date date;
 

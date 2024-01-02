@@ -12,7 +12,7 @@ import java.util.List;
 public class CustomExerciseRequestDTO extends BaseRequestDTO {
 
     /*
-        private int volume;
+        private Integer volume;
     */
     private String name;
 
@@ -20,7 +20,7 @@ public class CustomExerciseRequestDTO extends BaseRequestDTO {
 
     private boolean isNoteForGeneral;
 
-    private int restTime;
+    private Integer restTime;
 
     private List<SetRequestDTO> Sets;
 

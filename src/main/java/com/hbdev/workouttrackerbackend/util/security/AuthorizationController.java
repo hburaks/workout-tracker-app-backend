@@ -1,6 +1,5 @@
 package com.hbdev.workouttrackerbackend.util.security;
 
-import com.hbdev.workouttrackerbackend.Exceptions.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -63,21 +62,5 @@ public class AuthorizationController {
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
-
-
-    @GetMapping("test")
-    public ResponseEntity<HttpStatus> test(HttpServletRequest request) {
-        int a = 10;
-        int b = 0;
-        try {
-
-            System.out.println(a / b);
-        } catch (Exception e) {
-            throw new UserNotFoundException("hi");
-        }
-
-        System.out.println(a + b);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

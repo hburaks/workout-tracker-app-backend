@@ -9,8 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 public class BaseFilterRequestDTO extends BaseRequestDTO {
-    private int pageNumber;
-    private int pageSize;
+    private Integer pageNumber;
+    private Integer pageSize;
     private SortDTO sortDTO;
     private List<SearchCriteria> filters;
 }

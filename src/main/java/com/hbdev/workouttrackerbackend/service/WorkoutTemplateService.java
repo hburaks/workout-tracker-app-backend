@@ -1,9 +1,6 @@
 package com.hbdev.workouttrackerbackend.service;
 
-import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
-import com.hbdev.workouttrackerbackend.database.entity.DefaultExerciseEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutEntity;
-import com.hbdev.workouttrackerbackend.database.entity.WorkoutTemplateEntity;
+import com.hbdev.workouttrackerbackend.database.entity.*;
 import com.hbdev.workouttrackerbackend.database.repository.WorkoutTemplateRepository;
 import com.hbdev.workouttrackerbackend.database.specification.WorkoutTemplateSpecification;
 import com.hbdev.workouttrackerbackend.mapper.WorkoutTemplateMapper;
@@ -71,7 +68,6 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
             logger.error("Can not find the user");
             return null;
         }
-
         return createTemplate(workoutTemplateRequestDTO, userEntity);
     }
 
@@ -98,7 +94,11 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
             CustomExerciseEntity customExercise = defaultExerciseToCustomExercise(defaultExercise);
             customExercise.setNote(customExerciseRequestForTemplateDTO.getNote());
             customExercise.setRestTime(customExerciseRequestForTemplateDTO.getRestTime());
-            customExercise.getSets().addAll(setService.requestListToEntityList(customExerciseRequestForTemplateDTO.getSets()));
+            List<SetEntity> setEntityList = setService.requestListToEntityList(customExerciseRequestForTemplateDTO.getSets());
+            for (SetEntity set : setEntityList) {
+                set.setCustomExercise(customExercise);
+                customExercise.getSets().add(set);
+            }
             customExercise.setWorkoutTemplate(workoutTemplateEntity);
 
             userEntity.getProfile().getCustomExerciseList().add(customExercise);
@@ -106,6 +106,7 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
         }
         try {
             UserEntity savedUser = userEntityRepository.saveAndFlush(userEntity);
+            logger.info("Workout created");
             return getMapper().entityListToResponseDtoListInProfile(savedUser.getProfile().getWorkoutTemplateList());
         } catch (Exception e) {
             logger.error("Can not save the user", e);
@@ -125,5 +126,26 @@ public class WorkoutTemplateService extends BaseService<WorkoutTemplateResponseD
             workoutEntity.getWorkoutTemplate().getCustomExerciseList().add(customExercise);
         }
     }
+
+    @Transactional
+    public List<WorkoutTemplateInProfileResponseDTO> findAllForUser(HttpServletRequest request) {
+        UserEntity userEntity;
+        userEntity = jwtUtil.findUserByRequest(request);
+        if (userEntity == null) {
+            logger.error("Can not find the user");
+            return null;
+        }
+        return findAll(userEntity);
+    }
+
+    public List<WorkoutTemplateInProfileResponseDTO> findAll(UserEntity userEntity) {
+        List<WorkoutTemplateEntity> workoutTemplateEntityList = userEntity.getProfile().getWorkoutTemplateList();
+        if (workoutTemplateEntityList != null) {
+            return getMapper().listToResponseList(workoutTemplateEntityList);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
 }
 

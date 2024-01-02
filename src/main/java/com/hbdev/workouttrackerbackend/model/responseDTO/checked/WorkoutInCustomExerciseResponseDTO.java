@@ -11,9 +11,9 @@ import java.util.Date;
 @Setter
 public class WorkoutInCustomExerciseResponseDTO extends BaseResponseDTO {
 
-    private int duration;
+    private Integer duration;
 
-    private int volume;
+    private Integer volume;
 
     private Date date;
 

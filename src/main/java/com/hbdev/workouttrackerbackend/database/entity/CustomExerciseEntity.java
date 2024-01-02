@@ -17,11 +17,11 @@ public class CustomExerciseEntity extends BaseEntity {
 
     private String name;
 
-    private double volume;
+    private Double volume;
 
     private String note;
 
-    private int restTime;
+    private Integer restTime;
 
     @OneToMany(mappedBy = "customExercise", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<SetEntity> sets;//

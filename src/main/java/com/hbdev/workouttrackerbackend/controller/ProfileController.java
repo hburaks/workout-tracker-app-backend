@@ -9,13 +9,8 @@ import com.hbdev.workouttrackerbackend.model.responseDTO.ProfileResponseDTO;
 import com.hbdev.workouttrackerbackend.service.ProfileService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("profile")
@@ -29,24 +24,10 @@ public class ProfileController extends BaseController<ProfileRequestDTO,
         ProfileService> {
     private final ProfileService profileService;
 
-    private final ProfileRepository profileRepository;
-
 
     @Override
     protected ProfileService getService() {
         return profileService;
-    }
-
-
-    @GetMapping("test")
-    public ResponseEntity<HttpStatus> test() {
-        getService().printRequestAttribute();
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<ProfileEntity>> getAllUsers() {
-        return new ResponseEntity<>(profileRepository.findAll(), HttpStatus.OK);
     }
 
 

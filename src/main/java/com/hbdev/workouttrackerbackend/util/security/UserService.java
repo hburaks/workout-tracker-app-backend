@@ -65,7 +65,7 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
                 }
                 ProfileEntity profile = new ProfileEntity();
                 user.setProfile(profile);
-                if (createDefaultExercisesAndAddToUser(user) == false) {
+                if (!createDefaultExercisesAndAddToUser(user)) {
                     return false;
                 }
                 roles.add(roleEntity);

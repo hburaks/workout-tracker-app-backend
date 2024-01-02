@@ -10,9 +10,9 @@ import java.util.Date;
 @Setter
 public class PrimitiveWorkoutResponseDTO extends BaseResponseDTO {
 
-    private int duration;
+    private Integer duration;
 
-    private int volume;
+    private Integer volume;
 
     private Date date;
 

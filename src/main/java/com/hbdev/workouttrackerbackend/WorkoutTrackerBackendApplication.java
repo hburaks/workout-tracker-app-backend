@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @EnableJpaAuditing
@@ -27,6 +28,8 @@ public class WorkoutTrackerBackendApplication implements CommandLineRunner {
     private final AuthorizationController authorizationController;
     private final WorkoutTemplateService workoutTemplateService;
     private final JWTUtil jwtUtil;
+    private Map<String, String> credentials = Map.of("email", "hasanburaksongur@gmail.com", "password", "borva12");
+
     Logger logger = LoggerFactory.getLogger(WorkoutTrackerBackendApplication.class);
 
 
@@ -53,17 +56,22 @@ public class WorkoutTrackerBackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String jwt = login("hasanburaksongur@gmail.com", "borva12");
+        //  initial();
+    }
+
+    public void initial() {
+        register(credentials.get("email"), credentials.get("password"));
+        String jwt = login(credentials.get("email"), credentials.get("password"));
         createWorkoutTemplate(jwt);
     }
 
-    public void register() {
+    public void register(String email, String password) {
         UserRequestDTO registerData = new UserRequestDTO();
         registerData.setUsername("hburak-admin");
         registerData.setFirstName("Hasan Burak");
         registerData.setLastName("Songur");
-        registerData.setPassword("borva12");
-        registerData.setEmail("hasanburaksongur@gmail.com");
+        registerData.setPassword(password);
+        registerData.setEmail(email);
         System.out.println(authorizationController.saveAdmin(registerData));
     }
 
@@ -93,7 +101,6 @@ public class WorkoutTrackerBackendApplication implements CommandLineRunner {
 
         workoutTemplateRequestDTO.setCustomExerciseRequestDTOList(new ArrayList<>());
         workoutTemplateRequestDTO.getCustomExerciseRequestDTOList().add(customExerciseRequestForTemplateDTO);
-
 
         String email = jwtUtil.validateTokenAndRetrieveSubject(jwt);
         UserEntity user = jwtUtil.findUserByEmail(email);

@@ -12,7 +12,7 @@ public class DefaultExerciseResponseDTO extends BaseResponseDTO {
 
     private String note;
 
-    private int rm1;
+    private Integer rm1;
 
     private List<CustomExerciseResponseDTO> volumePrExercise;
 

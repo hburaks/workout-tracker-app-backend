@@ -38,6 +38,7 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
     private final CustomExerciseService customExerciseService;
     private final WorkoutTemplateService workoutTemplateService;
     private final UserService userService;
+    private final SetService setService;
     Logger logger = LoggerFactory.getLogger(WorkoutTemplateService.class);
 
 
@@ -113,14 +114,16 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
             if (workoutEntityToLook.getUuid().equals(uuid)) {
                 workoutEntity = workoutEntityToLook;
 
-                setTheDurationInSecond(workoutEntity);
-                workoutEntity.setFinished(true);
                 workoutEntity.setEndDate(new Date());
+                workoutEntity.setFinished(true);
+                Integer durationInSecond = calculateTheDurationInSecond(workoutEntity);
+                workoutEntity.setDurationInSecond(durationInSecond);
                 workoutEntity.setCustomExerciseList(new ArrayList<>());
                 for (CustomExerciseRequestDTO customExerciseRequestDTO : workoutRequestDTO.getCustomExerciseList()) {
                     workoutEntity = addCustomExerciseRequestToWorkout(workoutEntity, customExerciseRequestDTO);
                 }
-                calculateVolumeOfWorkout(workoutEntity);
+                Double volumeOfWorkout = customExerciseService.calculateVolumeOfCustomExerciseList(workoutEntity.getCustomExerciseList());
+                workoutEntity.setVolume(volumeOfWorkout);
 
                 if (workoutRequestDTO.isUpdateTemplate()) {
                     workoutTemplateService.updateTemplateFromWorkout(workoutEntity);
@@ -143,7 +146,7 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
     }
 
     private WorkoutEntity addCustomExerciseRequestToWorkout(WorkoutEntity workoutEntity, CustomExerciseRequestDTO customExerciseRequestDTO) {
-        DefaultExerciseEntity defaultExerciseFounded = findCustomExerciseFromDefaultExercises(customExerciseRequestDTO.getName(), workoutEntity.getProfile().getDefaultExerciseList());
+        DefaultExerciseEntity defaultExerciseFounded = findDefaultExerciseWithNameFromList(customExerciseRequestDTO.getName(), workoutEntity.getProfile().getDefaultExerciseList());
         CustomExerciseEntity customExerciseEntity = workoutTemplateService.defaultExerciseToCustomExercise(defaultExerciseFounded);
         if (customExerciseRequestDTO.isNoteForGeneral()) {
             customExerciseEntity.getDefaultExercise().setNote(customExerciseRequestDTO.getNote());
@@ -151,7 +154,7 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
             customExerciseEntity.setNote(customExerciseRequestDTO.getNote());
         }
         customExerciseEntity.setSets(SetMapper.INSTANCE.requestListToEntityList(customExerciseRequestDTO.getSets()));
-        double volumeOfExercise = customExerciseService.calculateVolumeOfCustomExercise(customExerciseEntity);
+        Double volumeOfExercise = setService.calculateVolumeOfSets(customExerciseEntity.getSets());
         customExerciseEntity.setVolume(volumeOfExercise);
         customExerciseEntity.setRestTime(customExerciseRequestDTO.getRestTime());
         customExerciseEntity.setWorkout(workoutEntity);
@@ -202,14 +205,14 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
         }
     }*/
 
-    private DefaultExerciseEntity findCustomExerciseFromDefaultExercises(String name, List<DefaultExerciseEntity> defaultExerciseEntityList) {
+    public DefaultExerciseEntity findDefaultExerciseWithNameFromList(String name, List<DefaultExerciseEntity> defaultExerciseEntityList) {
         for (DefaultExerciseEntity defaultExerciseEntity : defaultExerciseEntityList) {
             if (name.equals(defaultExerciseEntity.getDbExercise().getName())) {
                 return defaultExerciseEntity;
             }
         }
         logger.error("No exercise named " + name + " find in default exercise list of this profile");
-        return null;
+        throw new IllegalStateException("No exercise named " + name + " find in default exercise list of this profile");
     }
 
 
@@ -231,22 +234,17 @@ public class WorkoutService extends BaseService<WorkoutResponseDTO, WorkoutReque
     }*/
 
 
-    private void setTheDurationInSecond(WorkoutEntity workoutEntity) {
+    public Integer calculateTheDurationInSecond(WorkoutEntity workoutEntity) {
         Date startDate = workoutEntity.getStartDate();
         Date endDate = workoutEntity.getEndDate();
-        if (startDate != null && endDate != null) {
-            long differenceInMilliseconds = endDate.getTime() - startDate.getTime();
-            int durationInSeconds = (int) (differenceInMilliseconds / 1000);
-            workoutEntity.setDurationInSecond(durationInSeconds);
+
+        if (startDate == null || endDate == null) {
+            logger.error("Start date and/or end date are missing for workout.");
+            throw new IllegalStateException("Start date and/or end date are missing for workout.");
         }
 
+        long differenceInMilliseconds = endDate.getTime() - startDate.getTime();
+        return (int) (differenceInMilliseconds / 1000);
     }
 
-    private void calculateVolumeOfWorkout(WorkoutEntity workout) {
-        double volumeOfWorkout = 0;
-        for (CustomExerciseEntity customExercise : workout.getCustomExerciseList()) {
-            volumeOfWorkout += customExercise.getVolume();
-        }
-        workout.setVolume(volumeOfWorkout);
-    }
 }
