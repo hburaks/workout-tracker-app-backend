@@ -61,6 +61,7 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
                 if (roleEntity == null) {
                     roleEntity = new RoleEntity();
                     roleEntity.setName("user");
+
                     roleEntity = roleRepository.save(roleEntity);
                 }
                 ProfileEntity profile = new ProfileEntity();
@@ -146,6 +147,8 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
                 DefaultExerciseEntity defaultExercise = new DefaultExerciseEntity();
                 defaultExercise.setDbExercise(dbExercise);
                 defaultExercise.setProfile(profile);
+                defaultExercise.setName(dbExercise.getName());
+                defaultExercise.setHasDbExercise(true);
                 defaultExerciseList.add(defaultExercise);
             }
             profile.setDefaultExerciseList(defaultExerciseList);
@@ -164,5 +167,8 @@ public class UserService extends BaseService<UserResponseDTO, UserRequestDTO, Us
         } else {
             return null;
         }
+    }
+
+    public void clearCustomExerciseListWithSets(UserEntity userEntity) {
     }
 }

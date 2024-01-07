@@ -12,6 +12,6 @@ public class WorkoutRequestDTO extends BaseRequestDTO {
 
     private boolean updateTemplate;
 
-    private List<CustomExerciseRequestDTO> customExerciseList;
+    private List<CustomExerciseRequestDTOWithDbName> customExerciseList;
 
 }

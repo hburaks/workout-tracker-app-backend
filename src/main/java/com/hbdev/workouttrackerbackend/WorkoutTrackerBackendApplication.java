@@ -2,7 +2,7 @@ package com.hbdev.workouttrackerbackend;
 
 import com.hbdev.workouttrackerbackend.model.enums.SetTypeEnum;
 import com.hbdev.workouttrackerbackend.model.enums.WeightUnitTypeEnum;
-import com.hbdev.workouttrackerbackend.model.requestDTO.used.CustomExerciseRequestForTemplateDTO;
+import com.hbdev.workouttrackerbackend.model.requestDTO.CustomExerciseRequestDTOWithDbName;
 import com.hbdev.workouttrackerbackend.model.requestDTO.used.SetRequestDTO;
 import com.hbdev.workouttrackerbackend.model.requestDTO.used.WorkoutTemplateRequestDTO;
 import com.hbdev.workouttrackerbackend.model.responseDTO.checked.WorkoutTemplateInProfileResponseDTO;
@@ -19,7 +19,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @EnableJpaAuditing
 @SpringBootApplication
@@ -28,10 +27,8 @@ public class WorkoutTrackerBackendApplication implements CommandLineRunner {
     private final AuthorizationController authorizationController;
     private final WorkoutTemplateService workoutTemplateService;
     private final JWTUtil jwtUtil;
-    private Map<String, String> credentials = Map.of("email", "hasanburaksongur@gmail.com", "password", "borva12");
-
+    private final Map<String, String> credentials = Map.of("email", "hasanburaksongur@gmail.com", "password", "borva12");
     Logger logger = LoggerFactory.getLogger(WorkoutTrackerBackendApplication.class);
-
 
     public static void main(String[] args) {
         SpringApplication.run(WorkoutTrackerBackendApplication.class, args);
@@ -86,21 +83,23 @@ public class WorkoutTrackerBackendApplication implements CommandLineRunner {
         WorkoutTemplateRequestDTO workoutTemplateRequestDTO = new WorkoutTemplateRequestDTO();
         workoutTemplateRequestDTO.setName("Push Workout");
 
-        CustomExerciseRequestForTemplateDTO customExerciseRequestForTemplateDTO = new CustomExerciseRequestForTemplateDTO();
-        customExerciseRequestForTemplateDTO.setNote("Stiffen the back");
-        customExerciseRequestForTemplateDTO.setRestTime(45);
-        customExerciseRequestForTemplateDTO.setDefaultExerciseUuid(UUID.fromString("15486862-f825-4557-8d0b-4fae279a701c"));
+        CustomExerciseRequestDTOWithDbName customExerciseRequestDTOWithDbName = new CustomExerciseRequestDTOWithDbName();
+        customExerciseRequestDTOWithDbName.setNote("Stiffen the back");
+        customExerciseRequestDTOWithDbName.setRestTime(45);
+/*
+        customExerciseRequestDTOWithDbName.setDefaultExerciseUUID();
+*/
 
         SetRequestDTO setRequestDTO = new SetRequestDTO();
         setRequestDTO.setReps(18);
         setRequestDTO.setSetTypeEnum(SetTypeEnum.REGULAR);
         setRequestDTO.setWeightUnitTypeEnum(WeightUnitTypeEnum.KG);
 
-        customExerciseRequestForTemplateDTO.setSets(new ArrayList<>());
-        customExerciseRequestForTemplateDTO.getSets().add(setRequestDTO);
+        customExerciseRequestDTOWithDbName.setSets(new ArrayList<>());
+        customExerciseRequestDTOWithDbName.getSets().add(setRequestDTO);
 
-        workoutTemplateRequestDTO.setCustomExerciseRequestDTOList(new ArrayList<>());
-        workoutTemplateRequestDTO.getCustomExerciseRequestDTOList().add(customExerciseRequestForTemplateDTO);
+        workoutTemplateRequestDTO.setCustomExerciseList(new ArrayList<>());
+        workoutTemplateRequestDTO.getCustomExerciseList().add(customExerciseRequestDTOWithDbName);
 
         String email = jwtUtil.validateTokenAndRetrieveSubject(jwt);
         UserEntity user = jwtUtil.findUserByEmail(email);

@@ -11,8 +11,6 @@ import java.util.List;
 @Setter
 public class CustomExerciseInWorkoutResponseDTO extends BaseResponseDTO {
 
-    private String name;
-
     private Integer volume;
 
     private String note;

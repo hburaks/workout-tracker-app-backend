@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -43,11 +44,16 @@ public class WorkoutController extends BaseController<WorkoutRequestDTO, Workout
     public ResponseEntity<WorkoutFinishedResponseDTO> finishWorkout(@PathVariable UUID uuid, @RequestBody WorkoutRequestDTO requestDTO, HttpServletRequest request) {
         WorkoutFinishedResponseDTO responseDTO = getService().finishWorkoutForUser(uuid, request, requestDTO);
         if (responseDTO != null) {
-            return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    //TODO: any unfinished workout? you are finishing the last workout that is unfinished. so you need to check if there is any unfinished before start a new one(add a kontrol)
+    @GetMapping("find-all")
+    public ResponseEntity<List<WorkoutFinishedResponseDTO>> findAll(HttpServletRequest request) {
+        List<WorkoutFinishedResponseDTO> workoutTemplateList = workoutService.findAllForUser(request);
+        return new ResponseEntity<>(workoutTemplateList, HttpStatus.OK);
+    }
+
 }

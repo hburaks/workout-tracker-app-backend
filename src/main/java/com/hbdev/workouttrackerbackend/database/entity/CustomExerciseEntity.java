@@ -15,8 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomExerciseEntity extends BaseEntity {
 
-    private String name;
-
     private Double volume;
 
     private String note;
@@ -24,7 +22,7 @@ public class CustomExerciseEntity extends BaseEntity {
     private Integer restTime;
 
     @OneToMany(mappedBy = "customExercise", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<SetEntity> sets;//
+    private List<SetEntity> sets;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "default_exercise_id")
@@ -41,14 +39,5 @@ public class CustomExerciseEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "workout_template_id")
     private WorkoutTemplateEntity workoutTemplate;
-
-    public CustomExerciseEntity(CustomExerciseEntity other) {
-        this.setName(other.getName());
-        this.setRestTime(other.getRestTime());
-        this.setSets(other.getSets());
-        this.setDefaultExercise(other.getDefaultExercise());
-        this.setProfile(other.getProfile());
-        this.setWorkoutTemplate(other.workoutTemplate);
-    }
 
 }

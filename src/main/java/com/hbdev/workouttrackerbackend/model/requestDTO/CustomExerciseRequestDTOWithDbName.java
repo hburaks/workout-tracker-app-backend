@@ -6,15 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
-public class CustomExerciseRequestDTO extends BaseRequestDTO {
-
-    /*
-        private Integer volume;
-    */
-    private String name;
+public class CustomExerciseRequestDTOWithDbName extends BaseRequestDTO {
 
     private String note;
 
@@ -23,5 +19,7 @@ public class CustomExerciseRequestDTO extends BaseRequestDTO {
     private Integer restTime;
 
     private List<SetRequestDTO> Sets;
+
+    private UUID defaultExerciseUUID;
 
 }

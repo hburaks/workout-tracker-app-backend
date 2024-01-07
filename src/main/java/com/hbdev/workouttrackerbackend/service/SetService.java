@@ -1,5 +1,6 @@
 package com.hbdev.workouttrackerbackend.service;
 
+import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.entity.SetEntity;
 import com.hbdev.workouttrackerbackend.database.repository.SetRepository;
 import com.hbdev.workouttrackerbackend.database.specification.SetSpecification;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,20 +41,6 @@ public class SetService extends BaseService<SetResponseDTO, SetRequestDTO, SetEn
         return setSpecification;
     }
 
-    public List<SetEntity> requestListToEntityList(List<SetRequestDTO> requestDTOList) {
-        return getMapper().requestListToEntityList(requestDTOList);
-        /*List<SetEntity> setEntities = new ArrayList<>();
-        for (SetRequestDTO requestDTO : requestDTOList) {
-            SetEntity set = new SetEntity();
-            set.setReps(requestDTO.getReps());
-            set.setWeight(requestDTO.getWeight());
-            set.setSetTypeEnum(requestDTO.getSetTypeEnum());
-            set.setWeightUnitTypeEnum(requestDTO.getWeightUnitTypeEnum());
-            setEntities.add(set);
-        }
-        return setEntities;*/
-    }
-
     public Double calculateVolumeOfSets(List<SetEntity> sets) {
         Double volume = 0.0;
         int i = 0;
@@ -72,5 +60,44 @@ public class SetService extends BaseService<SetResponseDTO, SetRequestDTO, SetEn
         }
         return volume;
     }
+
+    public List<SetEntity> copySetList(List<SetEntity> setListToCopy, CustomExerciseEntity customExerciseEntity) {
+        List<SetEntity> newSetList = new ArrayList<>();
+        for (SetEntity set : setListToCopy) {
+            SetEntity newSet = copySet(set);
+            newSet.setCustomExercise(customExerciseEntity);
+            newSetList.add(newSet);
+        }
+        return newSetList;
+    }
+
+    public SetEntity copySet(SetEntity setToCopy) {
+        SetEntity newSet = new SetEntity();
+
+        newSet.setWeight(setToCopy.getWeight());
+        newSet.setReps(setToCopy.getReps());
+        newSet.setSetTypeEnum(setToCopy.getSetTypeEnum());
+        newSet.setWeightUnitTypeEnum(setToCopy.getWeightUnitTypeEnum());
+
+        return newSet;
+    }
+
+    public List<SetEntity> mapSetsWithCustomExercise(List<SetRequestDTO> setRequestDTOList, CustomExerciseEntity customExercise) {
+        List<SetEntity> setEntityList = new ArrayList<>();
+        for (SetRequestDTO setRequestDTO : setRequestDTOList) {
+            SetEntity set = getMapper().requestDtoToEntity(setRequestDTO);
+            set.setCustomExercise(customExercise);
+            setEntityList.add(set);
+        }
+        return setEntityList;
+    }
+
+    public Double calculateOneRM(SetEntity set) {
+        Double weight = set.getWeight();
+        int reps = set.getReps();
+        Double oneRm = weight / (1.0278 - 0.0278 * reps);
+        return oneRm;
+    }
+
 }
 

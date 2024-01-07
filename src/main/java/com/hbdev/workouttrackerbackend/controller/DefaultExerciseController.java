@@ -13,9 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +32,16 @@ public class DefaultExerciseController extends BaseController<DefaultExerciseReq
     public ResponseEntity<List<DefaultExerciseInListResponseDTO>> findAll(HttpServletRequest request) {
         List<DefaultExerciseInListResponseDTO> defaultExerciseList = defaultExerciseService.findAllForTheUser(request);
         return new ResponseEntity<>(defaultExerciseList, HttpStatus.OK);
+    }
+
+    @PostMapping("create-default-exercise")
+    public ResponseEntity<DefaultExerciseResponseDTO> createNewDefaultExercise(@RequestBody DefaultExerciseRequestDTO requestDTO, HttpServletRequest request) {
+        DefaultExerciseResponseDTO defaultExerciseResponseDTO = defaultExerciseService.createNewDefaultExercise(request, requestDTO);
+        if (defaultExerciseResponseDTO != null) {
+            return new ResponseEntity<>(defaultExerciseResponseDTO, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

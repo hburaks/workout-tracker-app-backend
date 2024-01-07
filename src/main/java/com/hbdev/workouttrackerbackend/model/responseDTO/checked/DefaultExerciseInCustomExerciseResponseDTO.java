@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class DefaultExerciseInCustomExerciseResponseDTO extends BaseResponseDTO {
 
+    private String name;
+
     private String note;
 
     private Integer rm1;

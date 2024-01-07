@@ -4,7 +4,7 @@ import com.hbdev.workouttrackerbackend.database.entity.CustomExerciseEntity;
 import com.hbdev.workouttrackerbackend.database.repository.CustomExerciseRepository;
 import com.hbdev.workouttrackerbackend.database.specification.CustomExerciseSpecification;
 import com.hbdev.workouttrackerbackend.mapper.CustomExerciseMapper;
-import com.hbdev.workouttrackerbackend.model.requestDTO.CustomExerciseRequestDTO;
+import com.hbdev.workouttrackerbackend.model.requestDTO.CustomExerciseRequestDTOWithDbName;
 import com.hbdev.workouttrackerbackend.model.responseDTO.CustomExerciseResponseDTO;
 import com.hbdev.workouttrackerbackend.service.CustomExerciseService;
 import com.hbdev.workouttrackerbackend.util.BaseController;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("workout-exercise")
 @RequiredArgsConstructor
-public class CustomExerciseController extends BaseController<CustomExerciseRequestDTO, CustomExerciseResponseDTO, CustomExerciseEntity, CustomExerciseMapper, CustomExerciseRepository, CustomExerciseSpecification, CustomExerciseService> {
+public class CustomExerciseController extends BaseController<CustomExerciseRequestDTOWithDbName, CustomExerciseResponseDTO, CustomExerciseEntity, CustomExerciseMapper, CustomExerciseRepository, CustomExerciseSpecification, CustomExerciseService> {
     private final CustomExerciseService customExerciseService;
 
 

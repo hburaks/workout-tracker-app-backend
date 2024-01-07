@@ -45,7 +45,7 @@ class CustomExerciseServiceTest {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        Double volumeOfWorkout = customExerciseService.calculateVolumeOfCustomExerciseList(exercises);
+        Double volumeOfWorkout = customExerciseService.calculateVolumeOfCustomExerciseListAndUpdateRm1(exercises);
 
         Double expectedVolume = 400.0;
         assertEquals(expectedVolume, volumeOfWorkout, "The calculated volume of the list is incorrect.");

@@ -11,9 +11,13 @@ import lombok.Setter;
 @Setter
 public class DefaultExerciseEntity extends BaseEntity {
 
+    private String name;
+
     private String note;
 
-    private Integer rm1;
+    private Double rm1;
+
+    private boolean hasDbExercise;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "db_exercise_id")
@@ -22,4 +26,5 @@ public class DefaultExerciseEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
+
 }

@@ -1,5 +1,6 @@
 package com.hbdev.workouttrackerbackend.model.requestDTO.used;
 
+import com.hbdev.workouttrackerbackend.model.requestDTO.CustomExerciseRequestDTOWithDbName;
 import com.hbdev.workouttrackerbackend.util.BaseRequestDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,6 @@ public class WorkoutTemplateRequestDTO extends BaseRequestDTO {
 
     private String name;
 
-    private List<CustomExerciseRequestForTemplateDTO> customExerciseRequestDTOList;
+    private List<CustomExerciseRequestDTOWithDbName> customExerciseList;
 
 }

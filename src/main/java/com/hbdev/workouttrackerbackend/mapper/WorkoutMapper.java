@@ -9,6 +9,8 @@ import com.hbdev.workouttrackerbackend.util.BaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface WorkoutMapper extends BaseMapper<WorkoutEntity, WorkoutResponseDTO, WorkoutRequestDTO> {
     WorkoutMapper INSTANCE = Mappers.getMapper(WorkoutMapper.class);
@@ -16,5 +18,8 @@ public interface WorkoutMapper extends BaseMapper<WorkoutEntity, WorkoutResponse
     WorkoutStartedResponseDTO entityToStartedResponseDto(WorkoutEntity entity);
 
     WorkoutFinishedResponseDTO entityToFinishedResponseDto(WorkoutEntity entity);
+
+    List<WorkoutFinishedResponseDTO> entityListToFinishedResponseDto(List<WorkoutEntity> entityList);
+
 
 }

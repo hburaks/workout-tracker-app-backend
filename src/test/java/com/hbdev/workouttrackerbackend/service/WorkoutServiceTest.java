@@ -44,7 +44,7 @@ class WorkoutServiceTest {
         when(workout.getStartDate()).thenReturn(startDate);
         when(workout.getEndDate()).thenReturn(endDate);
 
-        Integer durationInSecond = workoutService.calculateTheDurationInSecond(workout);
+        Integer durationInSecond = workoutService.calculateTheDurationInSecond(startDate, endDate);
         Integer expectedDuration = 1800;
         assertEquals(expectedDuration, durationInSecond, "The calculated duration of the workout is incorrect.");
     }
